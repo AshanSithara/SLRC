@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Broadcast Management </title>
+</head>
+<!--=========================*
+           Toastr Css
+*===========================-->
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/toastr/css/toastr.min.css}">
+
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        Today On Going Broadcast Details - <ab th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy')}"></ab>
+                    </h1>
+                    <br>
+                    <br>
+                    <div class="card-block" id="loadcarddata">
+                        <div class="view-info">
+                            <div class="general-info">
+                                <div class="row">
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="table-responsive">
+                                            <table class="table m-0">
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">Broadcast Name</th>
+                                                    <td th:text="${broadcast.name}"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">Status</th>
+                                                    <td th:text="${broadcast.statusdata}"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col"> ID</th>
+                            <th scope="col"> Caste Code</th>
+                            <th scope="col"> Programme Begin Time</th>
+                            <th scope="col"> Programme End Time</th>
+                            <th scope="col"> Status</th>
+                        </tr>
+                        </thead>
+                        <tr th:each="bd, rowCount : ${broadcastdetails}">
+                            <th th:text="${bd.id}"></th>
+                            <th th:text="${bd.clibrary.code}"></th>
+                            <th th:text="${bd.programmebegintime}"></th>
+                            <th th:text="${bd.programmeendtime}"></th>
+                            <th th:text="${bd.status}"></th>
+                        </tr>
+                    </table>
+                </div>
+
+                <br>
+                <br>
+
+
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+<!--base Component -->
+<script type="text/javascript" th:src="@{/dist/assets/base/baseComponet.js}"></script>
+
+<!-- Toastr Js -->
+<script type="text/javascript" th:src="@{/dist/assets/vendors/toastr/js/toastr.min.js}"></script>
+<!-- Toastr Init -->
+
+<script>
+
+
+    // function loaddatabroadcastdetails(){
+    //     $('#tablebodydata').empty();
+    //
+    //     $.ajax({
+    //         url: baseURL + "clibrary/all",
+    //         method: 'GET',
+    //         async: true,
+    //         dataType: "json"
+    //     }).done(function (resp) {
+    //         let row = "";
+    //         for (let i in resp) {
+    //             let response = resp[i];
+    //
+    //             let broadcastid = response['broadcastid'];
+    //             let ccode = response['ccode'];
+    //             let bid = response['id'];
+    //             let programmebegintime = response['programmebegintime'];
+    //             let programmeendtime = response['programmeendtime'];
+    //             let status = response['status'];
+    //             if (status == "0") {
+    //                 status = "Pending";
+    //             } else if (status == "1") {
+    //                 status = "ON AIR";
+    //             } else if (status == "2") {
+    //                 status = "Was Broadcast";
+    //             }
+    //             if (id == broadcastid) {
+    //                 row = "<tr>\n" +
+    //                     "                            <th scope=\"row\">" + bid + "</th>\n" +
+    //                     "                            <th scope=\"row\">" + ccode + "</th>\n" +
+    //                     "                            <td>" + programmebegintime + "</td>\n" +
+    //                     "                            <td>" + programmeendtime + "</td>\n" +
+    //                     "                            <td>" + status + "</td>\n" +
+    //                     "                        </tr>";
+    //                 $('#tablebodydata').append(row);
+    //
+    //             }
+    //         }
+    //     })
+    // }
+    //
+    // var today = new Date();
+    // let id=null;
+    // function loaddata() {
+    //     $.ajax({
+    //         url: baseURL + "clibrary/all",
+    //         method: 'GET',
+    //         async: true,
+    //         dataType: "json"
+    //     }).done(function (resp) {
+    //         $('#loadcarddata').empty();
+    //         let row = "";
+    //         for (let i in resp) {
+    //
+    //             let response = resp[i];
+    //
+    //             let broadcastdate = response['broadcastdate'];
+    //             id = response['id'];
+    //             let name = response['name'];
+    //             let status = response['status'];
+    //             var mydate = new Date(broadcastdate);
+    //
+    //             if (mydate.toLocaleDateString() == today.toLocaleDateString()) {
+    //                 if (status == 0) {
+    //                     status = "Not Broadcast Yet";
+    //                 } else if (status == 1) {
+    //                     status = "ON AIR";
+    //                 } else if (status == 2) {
+    //                     status = "PAUSED";
+    //                 } else if (status == 3) {
+    //                     status = "BROADCAST FINISH";
+    //                 } else if (status == 4) {
+    //                     status = "BROADCAST EXPIRE";
+    //                 }
+    //                 row = "<div class=\"view-info\">\n" +
+    //                     "<div class=\"general-info\">\n" +
+    //                     "   <div class=\"row\">\n" +
+    //                     "   <div class=\"col-lg-12 col-xl-6\">\n" +
+    //                     "   <div class=\"table-responsive\">\n" +
+    //                     "   <table class=\"table\">\n" +
+    //                     "   <tbody>\n" +
+    //                     "   <tr>\n" +
+    //                     "   <th scope=\"row\">Broadcast Name</th>\n" +
+    //                     "<td>" + name + "</td>\n" +
+    //                     "</tr>\n" +
+    //                     "</tbody>\n" +
+    //                     "</table>\n" +
+    //                     "</div>\n" +
+    //                     "</div>\n" +
+    //                     "<div class=\"col-lg-12 col-xl-6\">\n" +
+    //                     "<div class=\"table-responsive\">\n" +
+    //                     "<table class=\"table\">\n" +
+    //                     "<tbody>\n" +
+    //                     "<tr>\n" +
+    //                     "<th scope=\"row\">Status</th>\n" +
+    //                     "<td>" + status + "</td>\n" +
+    //                     "</tr>\n" +
+    //                     "</tbody>\n" +
+    //                     "</table>\n" +
+    //                     "</div>\n" +
+    //                     "</div>\n" +
+    //
+    //                     "</div>\n" +
+    //
+    //                     "</div>\n" +
+    //                     "</div>";
+    //
+    //             }
+    //
+    //         }
+    //         $('#loadcarddata').append(row);
+    //     })
+    // }
+
+</script>
+</body>
+</html>

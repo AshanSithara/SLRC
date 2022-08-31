@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="mb-5">Main Window</h1>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-user"></i> Employees
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="employee/add"> Add Employee </a></li>
+                                        <li><a class="text-decoration-none text-dark" href="employee"> View Employee List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-user-tie"></i> Sponsor
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="sponsor/add"> Add Sponsor </a></li>
+                                        <li><a class="text-decoration-none text-dark" href="sponsor"> View Sponsor List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-file-audio"></i> C. Library
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="clibrary/add"> Add C. Library </a></li>
+                                        <li><a class="text-decoration-none text-dark" href="clibrary"> View C. Library
+                                            List </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-list"></i> Programme
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="programme/add"> Add Programme </a></li>
+                                        <li><a class="text-decoration-none text-dark" href="programme"> View Programme List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-users"></i> Member
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="member/add"> Add Member </a></li>
+                                        <li><a class="text-decoration-none text-dark" href="member"> View Member List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-users"></i> Teams
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="team/add"> Add Teams </a></li>
+                                        <li><a class="text-decoration-none text-dark" href="team"> View Teams List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-chart-bar"></i> Reports
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="report/event-by-hour-report"> View Event Report </a>
+                                        </li>
+                                        <li><a class="text-decoration-none text-dark" href="report/employee-report-view"> View Employee
+                                            Report </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-user-edit"></i> PPU
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="ppu/add"> Add PPU  </a>
+                                        </li>
+                                        <li><a class="text-decoration-none text-dark" href="ppu"> View PPU List </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+
+                                    <h1 class="card-title text-primary">
+                                        <i aria-hidden="true" class="fa fa-building"></i> Studio
+                                    </h1>
+
+                                    <ul class="pl-5">
+                                        <li><a class="text-decoration-none text-dark" href="studio/add"> Add Studio </a></li>
+                                        <li><a class="text-decoration-none text-dark" href="studio"> View Studio List </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+
+
+

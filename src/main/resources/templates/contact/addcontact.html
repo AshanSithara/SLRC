@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Send Mail  </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6"><!--Left Side-->
+
+                                <!--Tittle -->
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="title">Select the Role :</label>
+                                    </div>
+                                    <select class="form-control"  id="title" required
+                                            tabindex="3">
+                                        <option value="none">Please select</option>
+                                        <option value="1">Employee</option>
+                                        <option value="2">Sponsor</option>
+                                    </select>
+                                </div>
+
+                                <!--Employee-->
+                                <div class="form-group d-none" id="divemployee">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="employee">Select Employee :</label>
+                                    </div>
+                                    <select class="form-control"  id="employee" required
+                                            tabindex="3">
+                                        <option value="none">Please select</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group d-none" id="divsponsor">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="sponsor">Select Sponsor :</label>
+                                    </div>
+                                    <select class="form-control"  id="sponsor" required
+                                            tabindex="3">
+                                        <option value="none">Please select</option>
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-6"><!--Right Side-->
+                                <div class="form-group">
+
+                                    <label class="control-label" for="subject">Subject of Email :</label>
+
+                                    <textarea class="form-control" id="subject" required
+                                              tabindex="6"
+                                    ></textarea>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="emailbody">Email Body
+                                        :</label>
+                                    <textarea class="form-control" id="emailbody"
+                                              required
+                                    ></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="btnsave" onclick="onclickbtnsave()" type="button">
+                                <i class="fa fa-save mr-1"></i>
+                                <span th:text="Save"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <hr>
+                    <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+                    <a href="/contact">
+                        <button class="btn btn-success" type="button" tabindex="10">
+                            <i class="fa fa-backward " style="font-size: 20px"></i>&nbsp; &nbsp;Back
+                        </button>
+                    </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+<!--base Component -->
+<script type="text/javascript" th:src="@{/dist/assets/base/baseComponet.js}"></script>
+
+<!-- Toastr Js -->
+<script type="text/javascript" th:src="@{/dist/assets/vendors/toastr/js/toastr.min.js}"></script>
+<!-- Toastr Init -->
+<script type="text/javascript" th:src="@{/dist/assets/js/init/toastr.js}"></script>
+<script>
+
+    // function readURL(input) {
+    //     if (input.files && input.files[0]) {
+    //         var reader = new FileReader();
+    //
+    //         reader.onload = function (e) {
+    //             $('#image').attr('src', e.target.result);
+    //         }
+    //
+    //         reader.readAsDataURL(input.files[0]); // convert to base64 string
+    //     }
+    // }
+    //
+    // $("#imgUpload").change(function () {
+    //     readURL(this);
+    // });
+
+    $("#title").change(function () {
+        // var end = this.value;
+        var title = $('#title').val();
+        switch (title){
+            case "1":
+                getallEmployee();
+                getallsponsorDetails();
+                $('#divemployee').removeClass('d-none');
+                $('#divsponsor').addClass('d-none');
+                break;
+            case "2":
+                getallEmployee();
+                getallsponsorDetails();
+                $('#divsponsor').removeClass('d-none');
+                $('#divemployee').addClass('d-none');
+                break;
+        }
+
+    });
+
+    function getallEmployee() {
+        $.ajax({
+            url: baseURL + "employee/all",
+            method: 'GET',
+            async: true,
+            dataType: "json"
+        }).done(function (resp) {
+            $('#employee').empty();
+
+            let row = "<option value=\"none\" >Select Employee</option>";
+            $('#employee').append(row);
+            let row1 = "";
+            for (let i in resp) {
+                let response = resp[i];
+
+                let id = response['id'];
+                let code = response['name'];
+                row1 = "<option value=" + id + " >" + code + "</option>";
+                $('#employee').append(row1);
+
+            }
+        });
+    }
+    function getallsponsorDetails() {
+        $.ajax({
+            url: baseURL + "sponsor/all",
+            method: 'GET',
+            async: true,
+            dataType: "json"
+        }).done(function (resp) {
+            $('#sponsor').empty();
+
+            let row = "<option value=\"none\" >Select Sponsor</option>";
+            $('#sponsor').append(row);
+            let row1 = "";
+            for (let i in resp) {
+                let response = resp[i];
+
+                let id = response['id'];
+                let code = response['name'];
+                row1 = "<option value=" + id + " >" + code + "</option>";
+                $('#sponsor').append(row1);
+
+            }
+        });
+    }
+
+    function onclickbtnsave(){
+        var title = $('#title').val();
+        var employee = $('#employee').val();
+        var sponsor = $('#sponsor').val();
+        var subject = $('#subject').val();
+        var emailbody = $('#emailbody').val();
+
+        if (title=="1"){
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + 'contact/employee/email',
+                    processData: false,
+                    cache: false,
+                    enctype: 'multipart/form-data',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        id: employee,
+                        subject: subject,
+                        text: emailbody
+                    }),
+
+                    error: function (res) {
+
+                        showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+                    },
+                    success: function (res) {
+                        showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Email Send Successfully !');
+                        window.location=baseURL+'contact';
+                    }
+                }).done(function (data) {
+                    console.log(data);
+                });
+
+
+        }else if (title=="2"){
+
+            $.ajax({
+                type: "POST",
+                url: baseURL + 'contact/sponsor/email',
+                processData: false,
+                cache: false,
+                enctype: 'multipart/form-data',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    id: sponsor,
+                    subject: subject,
+                    text: emailbody
+                }),
+
+                error: function (res) {
+
+                    showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+                },
+                success: function (res) {
+                    showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Email Send Successfully !');
+                    window.location=baseURL+'contact';
+                }
+            }).done(function (data) {
+                console.log(data);
+            });
+
+        }
+    }
+</script>
+</body>
+</html>

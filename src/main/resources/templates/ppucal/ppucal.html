@@ -1,0 +1,649 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <meta charset='utf-8' content="Uvin" name="Uvin"/>-->
+
+<!--    <link href="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.css"-->
+<!--          th:href="@{/webjars/fullcalendar/2.2.5/fullcalendar.css}" rel="stylesheet"></link>-->
+<!--    <link href="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.print.css"-->
+<!--          th:href="@{/webjars/fullcalendar/2.2.5/fullcalendar.print.css}" rel="stylesheet" media="print"></link>-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<!--    &lt;!&ndash;=========================*-->
+<!--              All CSS-->
+<!--    *===========================&ndash;&gt;-->
+
+<!--    <link th:href="@{/dist/css/all.css}" rel="stylesheet">-->
+<!--    <script th:src="@{/dist/assets/js/all.js}" type="text/javascript"></script>-->
+<!--    &lt;!&ndash;=========================*-->
+<!--               Toastr Css-->
+<!--    *===========================&ndash;&gt;-->
+<!--    <link rel="stylesheet" th:href="@{/dist/assets/vendors/toastr/css/toastr.min.css}">-->
+<!--    <style>-->
+
+<!--        body {-->
+<!--            margin: 40px 10px;-->
+<!--            padding: 0;-->
+<!--            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;-->
+<!--            font-size: 14px;-->
+<!--        }-->
+
+<!--        #calendar {-->
+<!--            max-width: 900px;-->
+<!--            margin: 0 auto;-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="row">-->
+<!--    <div class="col-lg-4">-->
+<!--        <div class="card">-->
+<!--            <div class="card-body">-->
+<!--                <h3 class="card_title">Create Event</h3>-->
+<!--                &lt;!&ndash; the events &ndash;&gt;-->
+<!--                <form method="post" enctype="multipart/form-data">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <label class="form-control-label">Event Name : <span-->
+<!--                                        class="tx-danger">*</span></label>-->
+<!--                                <input type="text" id="eventname" name="eventname" class="form-control"-->
+<!--                                       placeholder="Event Name "-->
+<!--                                       required>-->
+<!--                                <div id="eventnameerror" class="abc d-none">-->
+<!--                                    <p style="color:red;"> Please Enter Valid Event Name</p>-->
+<!--                                </div>-->
+<!--                            </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <label class="form-control-label">Description : <span-->
+<!--                                        class="tx-danger">*</span></label>-->
+<!--                                <textarea id="description" name="description" class="form-control"-->
+<!--                                          placeholder="Description" required></textarea>-->
+<!--                                <div id="descriptionerror" class="abc d-none">-->
+<!--                                    <p style="color:red;">Please Enter Valid Description </p>-->
+<!--                                </div>-->
+<!--                            </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <label class="form-control-label">Programme : <span-->
+<!--                                        class="tx-danger">*</span></label>-->
+<!--                                <select id="programme" name="programme" class="form-control"-->
+<!--                                        required></select>-->
+<!--                                <div id="programmeerror" class="abc d-none">-->
+<!--                                    <p style="color:red;">Please Select Valid Programme </p>-->
+<!--                                </div>-->
+<!--                            </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                        </div>-->
+
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <label class="form-control-label">Studio : <span-->
+<!--                                        class="tx-danger">*</span></label>-->
+<!--                                <select id="studio" name="studio" class="form-control"-->
+<!--                                        required></select>-->
+<!--                                <div id="studioerror" class="abc d-none">-->
+<!--                                    <p style="color:red;">Please Select Valid Studio </p>-->
+<!--                                </div>-->
+<!--                            </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                        </div>-->
+
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <label class="form-control-label">Event Begin Time : <span-->
+<!--                                        class="tx-danger">*</span></label>-->
+<!--                                <input type="datetime-local" id="eventbegintime" name="eventbegintime"-->
+<!--                                       class="form-control"-->
+<!--                                       placeholder="Event Begin Time "-->
+<!--                                       required>-->
+<!--                                <div id="eventbeginerror" class="abc d-none">-->
+<!--                                    <p style="color:red;">Please Enter Valid Event Begin Time</p>-->
+<!--                                </div>-->
+<!--                            </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <label class="form-control-label">Event End Time : <span-->
+<!--                                        class="tx-danger">*</span></label>-->
+<!--                                <input type="datetime-local" id="eventendtime"  name="eventendtime" class="form-control" disabled-->
+<!--                                       placeholder="Event Begin Time "-->
+<!--                                       required>-->
+<!--                                <div id="eventendtimeerror" class="abc d-none">-->
+<!--                                    <p style="color:red;">Please Enter Valid Event End Time</p>-->
+<!--                                </div>-->
+<!--                            </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <div class="form-check">-->
+<!--                                    <input class="form-check-input" type="radio" name="exampleRadios" id="SingleDay"-->
+<!--                                           value="SingleDay" checked>-->
+<!--                                    <label class="form-check-label" for="SingleDay">-->
+<!--                                        Single Day-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-group wd-xs-300">-->
+<!--                                <div class="form-check">-->
+<!--                                    <input class="form-check-input" type="radio" name="exampleRadios" id="BulkDays"-->
+<!--                                           value="BulkDays">-->
+<!--                                    <label class="form-check-label" for="BulkDays">-->
+<!--                                        Bulk Days-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <br>-->
+<!--                    <div th:switch="${role}">-->
+<!--                    <button th:case="'Admin'" class="btn btn-primary" id="eventAdd" type="button"   onclick="eventmangement()"-->
+<!--                            data-style="expand-left">-->
+<!--                        <span class="ladda-label">Submit</span>-->
+<!--                    </button>-->
+<!--                    <button th:case="'Booking Officer'" class="btn btn-primary" id="eventAdd" type="button"   onclick="eventmangement()"-->
+<!--                                data-style="expand-left">-->
+<!--                            <span class="ladda-label">Submit</span>-->
+<!--                    </button>-->
+<!--                    <button th:case="*" class="btn btn-primary" id="eventAdd" type="button" disabled   onclick="eventmangement()"-->
+<!--                                data-style="expand-left">-->
+<!--                            <span class="ladda-label">Submit</span>-->
+<!--                    </button>-->
+<!--                    </div>-->
+<!--                </form>-->
+
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div id='calendar' th:id="calendar"></div>-->
+<!--    <div class="d-none">-->
+<!--        <input id="rolevalue"   th:value="${role}">-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--<div id="calendarModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLongTitle"></h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body pd-20">-->
+<!--                <div class="row">-->
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+<!--                        <input id="eventid" class="d-none">-->
+<!--                        <label class="form-control-label">Event Name : <span-->
+<!--                                class="tx-danger">*</span></label>-->
+<!--                        <input type="text" id="eventnamemodal" name="eventnamemodal" class="form-control"-->
+<!--                               placeholder="Event Name"-->
+<!--                               required>-->
+<!--                        <div id="eventnamemodalerror" class="abc d-none">-->
+<!--                            <p style="color:red;">Please Enter Valid Event Name </p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; form-group &ndash;&gt;-->
+
+
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+<!--                        <label class="form-control-label">Description : <span-->
+<!--                                class="tx-danger">*</span></label>-->
+<!--                        <textarea id="descriptionmodal" name="descriptionmodal" class="form-control"-->
+<!--                                  placeholder="Description" required></textarea>-->
+<!--                        <div id="descriptionmodalerror" class="abc d-none">-->
+<!--                            <p style="color:red;">Please Enter Valid Description </p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; form-group &ndash;&gt;-->
+
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+
+<!--                        <label class="form-control-label">Programme : <span-->
+<!--                                class="tx-danger">*</span></label>-->
+<!--                        <select id="uprogramme" name="uprogramme" class="form-control"-->
+<!--                                required></select>-->
+<!--                        <div id="uprogrammeerror" class="abc d-none">-->
+<!--                            <p style="color:red;">Please Select Valid Programme </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+<!--                        <label class="form-control-label">Studio : <span-->
+<!--                                class="tx-danger">*</span></label>-->
+<!--                        <select id="ustudio" name="ustudio" class="form-control"-->
+<!--                                required></select>-->
+<!--                        <div id="ustudioerror" class="abc d-none">-->
+<!--                            <p style="color:red;">Please Select Valid Studio </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+<!--                        <label class="form-control-label">Event Begin Time : <span-->
+<!--                                class="tx-danger">*</span></label>-->
+<!--                        <input type="datetime-local" id="EventBeginTimemodal" name="EventBeginTimemodal"-->
+<!--                               class="form-control"-->
+<!--                               placeholder="Event Begin Time" required>-->
+<!--                        <div id="EventBeginTimemodalerror" class="abc d-none">-->
+<!--                            <p style="color:red;">Please Enter Valid Event Begin Time </p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+<!--                        <label class="form-control-label">Event End Time : <span-->
+<!--                                class="tx-danger">*</span></label>-->
+<!--                        <input type="datetime-local" id="EventEndTimemodal" name="EventEndTimemodal" disabled-->
+<!--                               class="form-control"-->
+<!--                               placeholder="Event End Time"-->
+<!--                               required>-->
+<!--                        <div id="EventEndTimemodalerror" class="abc d-none">-->
+<!--                            <p style="color:red;">Please Enter Valid Event End Time </p>-->
+<!--                        </div>-->
+<!--                    </div>&lt;!&ndash; form-group &ndash;&gt;-->
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+<!--                        <div class="form-check">-->
+<!--                            <input class="form-check-input" type="radio" name="exampleRadiosmodal" id="SingleDaymodal"-->
+<!--                                   value="SingleDay" checked>-->
+<!--                            <label class="form-check-label" for="SingleDaymodal">-->
+<!--                                Single Day-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">-->
+<!--                        <div class="form-check">-->
+<!--                            <input class="form-check-input" type="radio" name="exampleRadiosmodal" id="BulkDaysmodal"-->
+<!--                                   value="BulkDays">-->
+<!--                            <label class="form-check-label" for="BulkDaysmodal">-->
+<!--                                Bulk Days-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+<!--                </div>-->
+
+<!--            </div>&lt;!&ndash; modal-body &ndash;&gt;-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary" onclick="updateevent()">Save changes</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"-->
+<!--        th:src="@{/webjars/momentjs/2.9.0/min/moment.min.js}" type="text/javascript"></script>-->
+<!--<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.3/jquery.min.js"-->
+<!--        th:src="@{/webjars/jquery/2.1.3/jquery.min.js}" type="text/javascript"></script>-->
+<!--<script src="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.min.js"-->
+<!--        th:src="@{/webjars/fullcalendar/2.2.5/fullcalendar.min.js}" type="text/javascript"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"-->
+<!--        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
+<!--        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
+<!--        crossorigin="anonymous"></script>-->
+
+<!--&lt;!&ndash;base Component &ndash;&gt;-->
+<!--<script type="text/javascript" th:src="@{/dist/assets/base/baseComponet.js}"></script>-->
+
+<!--&lt;!&ndash; Toastr Js &ndash;&gt;-->
+<!--<script type="text/javascript" th:src="@{/dist/assets/vendors/toastr/js/toastr.min.js}"></script>-->
+<!--&lt;!&ndash; Toastr Init &ndash;&gt;-->
+<!--<script type="text/javascript" th:src="@{/dist/assets/js/init/toastr.js}"></script>-->
+
+<!--<script>-->
+<!--    function getallStudio() {-->
+<!--        $.ajax({-->
+<!--            url: baseURL + "ppu/all",-->
+<!--            method: 'GET',-->
+<!--            async: true,-->
+<!--            dataType: "json"-->
+<!--        }).done(function (resp) {-->
+<!--            $('#studio').empty();-->
+<!--            $('#ustudio').empty();-->
+
+<!--            let row = "<option value=\"none\" >Select PPu</option>";-->
+<!--            $('#studio').append(row);-->
+<!--            $('#ustudio').append(row);-->
+<!--            let row1 = "";-->
+<!--            for (let i in resp) {-->
+<!--                let response = resp[i];-->
+<!--                console.log(response);-->
+<!--                let id = response['id'];-->
+<!--                let name = response['ppuname'];-->
+<!--                row1 = "<option value=" + id + " >" + name + "</option>";-->
+<!--                $('#studio').append(row1);-->
+<!--                $('#ustudio').append(row1);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    getallStudio();-->
+
+<!--    function getallProgramme() {-->
+<!--        $.ajax({-->
+<!--            url: baseURL + "programme/value",-->
+<!--            method: 'GET',-->
+<!--            async: true,-->
+<!--            dataType: "json"-->
+<!--        }).done(function (resp) {-->
+<!--            $('#programme').empty();-->
+<!--            $('#uprogramme').empty();-->
+
+<!--            let row = "<option value=\"none\" >Select Programme</option>";-->
+<!--            $('#programme').append(row);-->
+<!--            $('#uprogramme').append(row);-->
+<!--            let row1 = "";-->
+<!--            for (let i in resp) {-->
+<!--                let response = resp[i];-->
+<!--                console.log(response);-->
+<!--                let id = response['id'];-->
+<!--                let code = response['programmeName'];-->
+<!--                row1 = "<option value=" + id + " >" + code + "</option>";-->
+<!--                $('#programme').append(row1);-->
+<!--                $('#uprogramme').append(row1);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+
+<!--    getallProgramme();-->
+
+<!--    $(document).ready(function () {-->
+
+<!--        elem = document.getElementById("EventBeginTimemodal")-->
+<!--        var now = new Date();-->
+<!--        var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();-->
+<!--        var minDate = iso.substring(0, iso.length - 8);-->
+<!--        elem.value = minDate-->
+<!--        elem.min = minDate-->
+
+<!--        elem = document.getElementById("EventEndTimemodal")-->
+<!--        var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();-->
+<!--        var minDate = iso.substring(0, iso.length - 8);-->
+<!--        elem.value = minDate-->
+<!--        elem.min = minDate-->
+
+
+<!--        elem = document.getElementById("eventbegintime");-->
+<!--        var now = new Date();-->
+<!--        var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();-->
+<!--        var minDate = iso.substring(0, iso.length - 8);-->
+<!--        elem.value = minDate;-->
+<!--        elem.min = minDate;-->
+
+<!--        elem = document.getElementById("eventendtime");-->
+<!--        var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();-->
+<!--        var minDate = iso.substring(0, iso.length - 8);-->
+<!--        elem.value = minDate;-->
+<!--        elem.min = minDate;-->
+
+<!--        var today = new Date();-->
+<!--        var dd = String(today.getDate()).padStart(2, '0');-->
+<!--        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!-->
+<!--        var yyyy = today.getFullYear();-->
+
+<!--        Date.prototype.addHours = function(h) {-->
+<!--            this.setTime(this.getTime() +-->
+<!--                (h * 60 * 60 * 1000));-->
+<!--            return this;-->
+<!--        }-->
+
+<!--        $(function () {-->
+<!--            $('#eventbegintime').change(function () {-->
+
+<!--                elem = document.getElementById("eventendtime");-->
+<!--                var now = new Date($('#eventbegintime').val());-->
+<!--                now.addHours(2);-->
+<!--                var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();-->
+<!--                var minDate = iso.substring(0, iso.length - 8);-->
+<!--                elem.value = minDate;-->
+<!--                elem.min = minDate;-->
+<!--            });-->
+
+<!--            $('#EventBeginTimemodal').change(function () {-->
+
+<!--                elem = document.getElementById("EventEndTimemodal");-->
+<!--                var now = new Date($('#EventBeginTimemodal').val());-->
+<!--                now.addHours(2);-->
+<!--                var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();-->
+<!--                var minDate = iso.substring(0, iso.length - 8);-->
+<!--                elem.value = minDate;-->
+<!--                elem.min = minDate;-->
+<!--            });-->
+<!--        });-->
+
+<!--        today = mm + '-' + dd + '-' + yyyy;-->
+<!--        $('#calendar').fullCalendar({-->
+<!--            header: {-->
+<!--                left: 'prev,next today',-->
+<!--                center: 'title',-->
+<!--                right: 'month,agendaWeek,agendaDay'-->
+<!--            },-->
+<!--            defaultDate: today,-->
+<!--            editable: false,-->
+<!--            eventLimit: false, // allow "more" link when too many events-->
+<!--            eventSources: [-->
+<!--                {-->
+<!--                    url: '/allevents/one',-->
+<!--                    type: 'GET',-->
+<!--                    error: function () {-->
+<!--                        alert('there was an error while fetching events!');-->
+<!--                    },-->
+<!--                    color: 'blue',   // a non-ajax option-->
+<!--                    textColor: 'white', // a non-ajax option-->
+<!--                    displayEventTime:true,-->
+<!--                    allDay:true-->
+<!--                },-->
+<!--                {-->
+<!--                    url: '/allevents/bulk',-->
+<!--                    type: 'GET',-->
+<!--                    error: function () {-->
+<!--                        alert('there was an error while fetching events!');-->
+<!--                    },-->
+<!--                    color: 'orange',   // a non-ajax option-->
+<!--                    textColor: 'black', // a non-ajax option-->
+<!--                    allDay:true,-->
+<!--                    displayEventTime:true-->
+<!--                }-->
+<!--            ],-->
+<!--            eventRender: function (event, element) {-->
+<!--                if($('#rolevalue').val()=="Admin" || $('#rolevalue').val()=="Booking Officer") {-->
+
+<!--                    element.append("<button type=\"button\" class=\"btn btn-danger closeon\">X</button>");-->
+<!--                    element.find(".closeon").click(function () {-->
+<!--                        let id = event._id;-->
+
+<!--                        $.ajax({-->
+<!--                            type: "POST",-->
+<!--                            url: baseURL + 'event/delete/' + id,-->
+<!--                            processData: false,-->
+<!--                            cache: false,-->
+<!--                            // enctype: 'multipart/form-data',-->
+<!--                            dataType: 'json',-->
+<!--                            contentType: "application/json; charset=utf-8",-->
+<!--                            error: function () {-->
+<!--                                showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');-->
+<!--                            },-->
+<!--                            success: function () {-->
+<!--                                showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Event Deleted Successfully !');-->
+<!--                                $('#calendar').fullCalendar('removeEvents', event._id);-->
+<!--                            }-->
+<!--                        }).done(function (data) {-->
+<!--                        });-->
+<!--                    });-->
+
+<!--                    element.append("<button type=\"button\" class=\"btn btn-secondary abcde\">E</button>");-->
+<!--                }-->
+<!--                element.find(".abcde").click(function () {-->
+<!--                    let id = event._id;-->
+
+<!--                    $.ajax({-->
+<!--                        type: "GET",-->
+<!--                        url: baseURL + 'allevents',-->
+<!--                        dataType: 'json',-->
+<!--                        error: function (data) {-->
+<!--                            // showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');-->
+<!--                        }-->
+<!--                    }).done(function (data) {-->
+<!--                        for (let i in data) {-->
+<!--                            let newdata = data[i];-->
+<!--                            let eventid = newdata['id'];-->
+
+<!--                            if (id == eventid) {-->
+<!--                                let title = newdata['title'];-->
+<!--                                let eventtype = newdata['eventtype'];-->
+<!--                                let start1 = newdata['start'];-->
+<!--                                let finish1 = newdata['finish'];-->
+<!--                                let start = moment(start1).format("YYYY-MM-DD\THH:mm");-->
+<!--                                let finish = moment(finish1).format("YYYY-MM-DD\THH:mm");-->
+<!--                                let description = newdata['description'];-->
+<!--                                let programme_id = newdata['programme_id'];-->
+<!--                                let studio_id = newdata['studio_id'];-->
+<!--                                $('#eventid').val(id);-->
+<!--                                $('#ustudio').val(studio_id);-->
+<!--                                $('#uprogramme').val(programme_id);-->
+<!--                                $('#EventBeginTimemodal').val(start);-->
+<!--                                $('#EventEndTimemodal').val(finish);-->
+<!--                                $('#descriptionmodal').val(description);-->
+<!--                                $('#eventnamemodal').val(title);-->
+<!--                                if (eventtype == "BulkDays") {-->
+<!--                                    $("#BulkDaysmodal").prop("checked", true);-->
+<!--                                } else {-->
+<!--                                    $("#SingleDaymodal").prop("checked", true);-->
+<!--                                }-->
+
+<!--                            }-->
+<!--                        }-->
+<!--                    });-->
+
+<!--                    $('#exampleModalLongTitle').html(event.title);-->
+<!--                    $('#calendarModal').modal("show");-->
+<!--                    $('#calendar').fullCalendar('updateEvent', event);-->
+<!--                });-->
+
+<!--            },-->
+<!--            eventClick: function (event, element) {-->
+<!--                // event.title = "CLICKED!";-->
+
+
+<!--            }-->
+<!--        });-->
+<!--    });-->
+
+
+<!--    function eventmangement() {-->
+
+<!--        let title = $('#eventname').val();-->
+<!--        let description = $('#description').val();-->
+<!--        let start = $('#eventbegintime').val();-->
+<!--        let finish = $('#eventendtime').val();-->
+<!--        let eventtype = $('input[name=exampleRadios]:checked').val();-->
+<!--        let programme = $('#programme').val();-->
+<!--        let studio = $('#studio').val();-->
+
+<!--        var finish1 = new Date(finish);-->
+<!--        var start1 = new Date(start);-->
+<!--        if (finish1.getTime() > start1.getTime() && start1.getDate() <= finish1.getDate()) {-->
+<!--            $.ajax({-->
+<!--                type: "POST",-->
+<!--                url: baseURL + 'event/add',-->
+<!--                processData: false,-->
+<!--                cache: false,-->
+<!--                enctype: 'multipart/form-data',-->
+<!--                dataType: "json",-->
+<!--                contentType: "application/json; charset=utf-8",-->
+<!--                data: JSON.stringify({-->
+<!--                    title: title,-->
+<!--                    description: description,-->
+<!--                    start: start,-->
+<!--                    finish: finish,-->
+<!--                    eventtype: eventtype,-->
+<!--                    programmeid: programme,-->
+<!--                    studioid: studio,-->
+<!--                }),-->
+
+<!--                error: function (res) {-->
+
+<!--                    showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');-->
+<!--                },-->
+<!--                success: function (res) {-->
+
+<!--                    showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Event Added Successfully !');-->
+<!--                    $('#eventbegintime').css('border-color', '');-->
+<!--                    $('#eventendtime').css('border-color', '');-->
+<!--                    location.reload();-->
+
+<!--                }-->
+<!--            }).done(function (data) {-->
+<!--                console.log(data);-->
+
+
+<!--            });-->
+<!--        } else {-->
+<!--            showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');-->
+<!--            $('#eventbegintime').css('border-color', 'red');-->
+<!--            $('#eventendtime').css('border-color', 'red');-->
+<!--        }-->
+<!--    }-->
+
+<!--    function updateevent() {-->
+<!--        let id = $('#eventid').val();-->
+<!--        let title = $('#eventnamemodal').val();-->
+<!--        let description = $('#descriptionmodal').val();-->
+<!--        let start = $('#EventBeginTimemodal').val();-->
+<!--        let finish = $('#EventEndTimemodal').val();-->
+<!--        let programme = $('#uprogramme').val();-->
+<!--        let studio = $('#ustudio').val();-->
+<!--        let eventtype = $('input[name=exampleRadiosmodal]:checked').val();-->
+
+<!--        var finish1 = new Date(finish);-->
+<!--        var start1 = new Date(start);-->
+<!--        if (finish1.getTime() > start1.getTime() && start1.getDate() <= finish1.getDate()) {-->
+<!--            $.ajax({-->
+<!--                type: "POST",-->
+<!--                url: baseURL + 'event/update',-->
+<!--                processData: false,-->
+<!--                cache: false,-->
+<!--                // enctype: 'multipart/form-data',-->
+<!--                dataType: 'json',-->
+<!--                contentType: "application/json; charset=utf-8",-->
+<!--                data: JSON.stringify({-->
+<!--                    id: id,-->
+<!--                    title: title,-->
+<!--                    description: description,-->
+<!--                    start: start,-->
+<!--                    finish: finish,-->
+<!--                    eventtype: eventtype,-->
+<!--                    programmeid: programme,-->
+<!--                    studioid: studio,-->
+<!--                }),-->
+
+<!--                error: function () {-->
+<!--                    showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');-->
+<!--                },-->
+<!--                success: function () {-->
+<!--                    showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Event Added Successfully !');-->
+<!--                    $('#EventEndTimemodal').css('border-color', '');-->
+<!--                    $('#EventBeginTimemodal').css('border-color', '');-->
+<!--                    location.reload();-->
+<!--                }-->
+<!--            }).done(function (data) {-->
+<!--            });-->
+<!--        } else {-->
+<!--            showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');-->
+<!--            $('#EventEndTimemodal').css('border-color', 'red');-->
+<!--            $('#EventBeginTimemodal').css('border-color', 'red');-->
+<!--        }-->
+<!--    }-->
+
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

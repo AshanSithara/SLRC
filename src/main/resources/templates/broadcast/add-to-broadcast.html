@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Broadcast Management </title>
+</head>
+<!--=========================*
+           Toastr Css
+*===========================-->
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/toastr/css/toastr.min.css}">
+
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6"><!--Left Side-->
+
+                                <div class="form-group">
+
+                                    <label class="control-label" for="name">Broadcast Name :</label>
+                                    <input class="form-control" id="name" required
+                                           type="text"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6"><!--Right Side-->
+                                <div class="form-group">
+                                    <label class="control-label" for="name">Broadcast Date :</label>
+                                    <input class="form-control" id="broadcastdate" required
+                                           type="date"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="btnsave" onclick="onclickbtnsave()" type="button">
+                                <i class="fa fa-save mr-1"></i>
+                                <span th:text="Save"></span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        Broadcast Details
+
+                    </h1>
+
+                    <table class="table table-hover table-striped text-dark" id="myTable"
+                    >
+                        <thead>
+                        <tr>
+                            <th> ID</th>
+                            <th> Broadcast Code</th>
+                            <th> Broadcast Name</th>
+                            <th> Date</th>
+                            <th> Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="broadcast, rowCount : ${broadcasts}">
+                            <th th:text="${broadcast.id}"></th>
+                            <th th:text="${broadcast.broadcastcode}"></th>
+                            <th th:text="${broadcast.name}"></th>
+                            <th th:text="${broadcast.broadcastdate}"></th>
+                            <th th:text="${broadcast.statusdata}"></th>
+                            <th>
+                                <a th:unless="${broadcast.status=='3'}" id="addtobroadcast"
+                                   th:href="${'/broadcast/manage/' + broadcast.id}"
+                                   class="btn  btn-primary"><i class="fa fa-plus mr-2"></i>
+                                </a>
+                                <a th:if="${broadcast.status=='1'}"
+                                   th:href="${'/broadcast/update-status/' + broadcast.id +'/2'}"
+                                   class="btn  btn-primary"><i class="fas fa-angle-double-right"></i>
+                                </a>
+                                <a th:if="${broadcast.status=='2'}"
+                                   th:href="${'/broadcast/update-status/' + broadcast.id +'/1'}"
+                                   class="btn  btn-primary"><i class="fas fa-angle-double-right"></i>
+                                </a>
+                                <a th:if="${broadcast.status=='0'}"
+                                        th:href="${'/broadcast/edit/' + broadcast.id }"
+                                   class="btn  btn-success"><i class="fas fa-edit"></i>
+                                </a>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+<!--base Component -->
+<script type="text/javascript" th:src="@{/dist/assets/base/baseComponet.js}"></script>
+
+<!-- Toastr Js -->
+<script type="text/javascript" th:src="@{/dist/assets/vendors/toastr/js/toastr.min.js}"></script>
+<!-- Toastr Init -->
+<script type="text/javascript" th:src="@{/dist/assets/js/init/toastr.js}"></script>
+<script>
+
+    $(function () {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        // or instead:
+        // var maxDate = dtToday.toISOString().substr(0, 10);
+
+        $('#broadcastdate').attr('min', maxDate);
+    });
+
+    function onclickbtnsave() {
+
+        var name = $('#name').val();
+        var broadcastdate = $('#broadcastdate').val();
+
+
+        $.ajax({
+            url: baseURL + "broadcast/date-check/" + broadcastdate,
+            method: 'GET',
+            async: true,
+            dataType: "json"
+        }).done(function (resp) {
+
+            if (resp) {
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + 'broadcast/add',
+                    processData: false,
+                    cache: false,
+                    enctype: 'multipart/form-data',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        name: name,
+                        broadcastdate: broadcastdate
+                    }),
+
+                    error: function (res) {
+
+                        showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+                    },
+                    success: function (res) {
+                        showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Added Broadcast  Successfully !');
+                        if (true){
+                            setTimeout(location.reload.bind(location), 4000);
+                        }
+                    }
+                }).done(function (data) {
+                    console.log(data);
+                });
+            } else {
+                showToast(TOAST_TYPE.DANGER, 'Error !', 'Has Another Broadcast to this Date !');
+            }
+        });
+    }
+</script>
+</body>
+</html>

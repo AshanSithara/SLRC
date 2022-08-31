@@ -1,0 +1,122 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	//implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	//implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//twilio - to send SMS
+	implementation group: "com.twilio.sdk", name: "twilio", version: "7.42.0"
+//=========================Springboot cache=========//
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+
+	//uvin begin
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+	// https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
+	implementation group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.16.0'
+	// https://mvnrepository.com/artifact/com.lowagie/itext
+	implementation group: 'com.lowagie', name: 'itext', version: '2.1.7'
+
+
+	//uvin end
+//================= Following jar is need to check url util - https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 =================//
+	compile group: 'org.apache.commons', name: 'commons-lang3'
+//================= Following jar is need to generate excel file - https://mvnrepository.com/artifact/org.apache.poi/poi=================//
+	compile group: 'org.apache.poi', name: 'poi', version: '3.8'
+	/*pdf generate related*/
+//================= Following jar is need to generate pdf file -https://mvnrepository.com/artifact/com.itextpdf/itextpdf =================//
+	compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.9'
+// ==== this is need to html content convert to pdf
+	compile group: 'com.itextpdf.tool', name: 'xmlworker', version: '5.5.9'
+//====== use as three jars to set bootstrap and front awesome
+// https://mvnrepository.com/artifact/org.webjars/bootstrap
+	compile group: 'org.webjars', name: 'bootstrap', version: '4.4.1'
+// https://mvnrepository.com/artifact/org.webjars/popper.js
+	compile group: 'org.webjars', name: 'popper.js', version: '1.15.0'
+// https://mvnrepository.com/artifact/org.webjars/jquery
+	compile group: 'org.webjars', name: 'jquery', version: '3.4.1'
+// https://mvnrepository.com/artifact/org.webjars/jquery-ui
+	compile group: 'org.webjars', name: 'jquery-ui', version: '1.12.1'
+// https://mvnrepository.com/artifact/org.webjars/font-awesome
+	compile group: 'org.webjars', name: 'font-awesome', version: '5.11.2'
+// https://mvnrepository.com/artifact/org.webjars/pdf-js
+	compile group: 'org.webjars', name: 'pdf-js', version: '2.3.200'
+// https://mvnrepository.com/artifact/org.webjars.npm/chart.js
+	compile group: 'org.webjars.npm', name: 'chart.js', version: '2.9.3'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-gradle-plugin -- from build jar file
+	compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.2.2.RELEASE', ext: 'pom'
+	//====== use as three jars use to enable eh caches -> // https://mvnrepository.com/artifact/org.ehcache/ehcache
+	compile group: 'org.ehcache', name: 'ehcache', version: '3.8.1'
+// https://mvnrepository.com/artifact/javax.cache/cache-api
+	compile group: 'javax.cache', name: 'cache-api', version: '1.1.1'
+//========== to aspect oriented programing -> // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.2.4.RELEASE'
+// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+	compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
+
+	compile 'org.webjars:jquery:3.4.1'
+	compile 'org.webjars:jquery-ui:1.12.1'
+	compile "org.webjars:bootstrap:4.4.1"
+	compile 'org.webjars:momentjs:2.9.0'
+	compile 'org.webjars:fullcalendar:2.2.5'
+
+	//map Structure
+	implementation 'org.mapstruct:mapstruct:1.4.1.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.1.Final'
+
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.1'
+
+	//Jackson databind
+	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+
+
+// https://mvnrepository.com/artifact/joda-time/joda-time
+//	compile group: 'joda-time', name: 'joda-time', version: '2.10.1'
+
+
+
+
+	// https://mvnrepository.com/artifact/com.codahale.metrics/metrics-core
+	compile group: 'com.codahale.metrics', name: 'metrics-core', version: '3.0.1'
+
+	// https://mvnrepository.com/artifact/org.json/json
+	compile group: 'org.json', name: 'json', version: '20180130'
+
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	//ALUTHENGANNAKOTA COMMENT KARAGANNA
+	/*developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}*/
+
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
+}
+
+test {
+	useJUnitPlatform()
+}

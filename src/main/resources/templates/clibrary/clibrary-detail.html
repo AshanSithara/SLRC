@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="mb-5">
+                        <i class="fa fa-user-plus"></i>
+                        C. Library Detail : <span th:text="${clibraryDetail.programmeName}"></span>
+                    </h1>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4" for="id">ID :</label>
+                                <p class="col-md" id="id" th:text="${clibraryDetail.id}"></p>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4" for="code">Programme name :</label>
+                                <p class="col-md" id="code" th:text="${clibraryDetail.programmeName}"></p>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4" for="name">Episode Number :</label>
+                                <p class="col-md" id="name"
+                                   th:text="${clibraryDetail.episodeNumber}"></p>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4" for="brn">Code :</label>
+                                <p class="col-md" id="brn" th:text="${clibraryDetail.code}"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4" for="createdAt">Created At :</label>
+                                <p class="col-md"
+                                   id="createdAt"
+                                   th:text="${#temporals.format(clibraryDetail.createdAt, 'dd-MM-yyyy HH:mm')}"></p>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4" for="updatedBy">Updated By :</label>
+                                <p class="col-md"
+                                   id="updatedBy"
+                                   th:text="${#temporals.format(clibraryDetail.updatedAt, 'dd-MM-yyyy HH:mm')}"></p>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4" for="updatedAt">Updated At :</label>
+                                <p class="col-md" id="updatedAt" th:text="${{clibraryDetail.updatedAt}}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+                        <!--Back Button-->
+                        <a href="/clibrary">
+                            <button class="btn btn-dark" type="button" tabindex="10" style="alignment:center">
+                                <i class="fa fa-backward " style="font-size: 20px"></i>&nbsp; &nbsp;Back
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>

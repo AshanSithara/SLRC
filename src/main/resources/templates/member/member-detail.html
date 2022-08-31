@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="text-dark mb-5"><i class="fa fa-user-friends font-weight-bold"></i>
+                        Employee Details
+
+                        <a class="btn btn-success" href="/member/add"
+                           th:if="${role == 'Admin' || role == 'Booking Officer' }">
+                            <i class="fa fa-plus mr-2"></i> New
+                        </a>
+                    </h1>
+
+                    <hr>
+
+                    <div th:fragment="memberDetailsFragment">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="id">ID :</label>
+                                    <p class="col-md text-left" id="id" th:text="${memberDetail.id}"></p>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="memberName">Member name :</label>
+                                    <p class="col-md text-left" id="memberName" th:text="${memberDetail.memberName}"></p>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="employeeName">Employee name :</label>
+                                    <p class="col-md text-left" id="employeeName"  th:text="${memberDetail.employee.name}+ ${' - '}+${memberDetail.employee.nic}"></p>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-4" for="createDate">Created Date :</label>
+                                    <p class="col-md text-left" id="createDate" th:text="${{memberDetail.createdAt}}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+                            <!--Back Button-->
+                            <a href="/member">
+                                <button class="btn btn-dark" type="button" tabindex="10" style="alignment:center">
+                                    <i class="fa fa-backward " style="font-size: 20px"></i>&nbsp; &nbsp;Back
+                                </button>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+

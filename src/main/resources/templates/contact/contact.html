@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Employee </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        Email Details
+                        <a class="btn btn-success" href="/contact/add"
+                           th:if="${role == 'Admin' || role == 'Booking Officer' }">
+                            <i class="fa fa-plus mr-2"></i> New
+                        </a>
+                    </h1>
+
+                    <table class="table table-hover table-striped text-dark" id="myTable"
+                           >
+                        <thead>
+                        <tr>
+                            <th> ID</th>
+                            <th> Name</th>
+                            <th> Message</th>
+                            <th> Subject</th>
+                            <th> Email</th>
+                            <th> Mobile Number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="email, rowCount : ${emails}">
+                            <th th:text="${rowCount.count}"></th>
+                            <th th:text="${email.name}"></th>
+                            <th th:text="${email.text}"></th>
+                            <th th:text="${email.subject}"></th>
+                            <th th:text="${email.email}"></th>
+                            <th th:text="${email.mobilenumber}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>

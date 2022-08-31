@@ -1,0 +1,56 @@
+<!-- left side menu -->
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="side_panel_fragment" class="theme_side_panel">
+
+    <!-- site identify - logo area -->
+    <div class="logo_area">
+        <a href="/">
+            <img alt="logo_image" th:src="@{/dist/img/logo.png}">
+        </a>
+    </div>
+    <!-- site identify - logo area -->
+
+    <ul class="side_menu">
+        <li class="side_menu_item active">
+            <a th:href="${'/index'}"> <i class="fa fa-th-large"></i> Dashboard </a>
+        </li>        <li class="side_menu_item">
+            <a th:href="${'/mainWindow'}"> <i class="fa fa-window-maximize"></i> Main Window </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/employee'}"> <i class="fa fa-user"></i> Employee </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/sponsor'}"> <i class="fa fa-user-tie"></i> Sponsor </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/programme'}"> <i class="fa fa-tasks"></i> Programmes </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/resource'}"> <i class="fa fa-building"></i> Resources </a>
+        </li>
+
+        <li class="side_menu_item">
+            <a th:href="${'/clibrary'}"> <i class="fa fa-file-audio"></i> Caset Library </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/broadcast'}"> <i class="fa fa-broadcast-tower"></i> Broadcasting </a>
+        </li>
+       <!-- <li class="side_menu_item">
+            <a th:href="${'/ppu'}">
+                <i class="fa fa-user-edit"></i> PPU Management </a>
+        </li>-->
+        <li class="side_menu_item">
+            <a th:href="${'/approve'}"> <i class="fa fa-check-circle"></i> Approve </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/team'}"> <i class="fa fa-users"></i> Team </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/report/reports'}"> <i class="fa fa-chart-bar"></i> Reports </a>
+        </li>
+        <li class="side_menu_item">
+            <a th:href="${'/login'}"> <i class="fa fa-power-off"></i> Logout </a>
+        </li>
+    </ul>
+
+</div>
+<!-- left side menu -->
