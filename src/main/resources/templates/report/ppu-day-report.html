@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+
+<link href="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.css"
+      rel="stylesheet" th:href="@{/webjars/fullcalendar/2.2.5/fullcalendar.css}"></link>
+<link href="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.print.css"
+      media="print" rel="stylesheet" th:href="@{/webjars/fullcalendar/2.2.5/fullcalendar.print.css}"></link>
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+<!--=========================*
+          All CSS
+*===========================-->
+
+<link rel="stylesheet" th:href="@{/dist/css/all.css}">
+<script th:src="@{/dist/assets/js/all.js}" type="text/javascript"></script>
+<!--=========================*
+           Toastr Css
+*===========================-->
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/toastr/css/toastr.min.css}">
+
+<!--=========================*
+          Datatable
+*===========================-->
+<!-- Start datatable css -->
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/data-table/css/jquery.dataTables.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/data-table/css/dataTables.bootstrap4.min.css}"
+      type="text/css">
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/data-table/css/responsive.bootstrap.min.css}"
+      type="text/css">
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/data-table/css/responsive.jqueryui.min.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/jquery.steps/css/jquery.steps.css}" type="text/css">
+
+<style>
+
+    body {
+        margin: 40px 10px;
+        padding: 0;
+        font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+        font-size: 14px;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+</style>
+
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="mb-3">
+                        <i class="fa fa-building"></i> Day By Hours Report
+                    </h1>
+
+                    <hr>
+
+                    <div class="row">
+                        <!-- Bar Chart -->
+                        <div class="col-12 mt-4 stretched_card">
+                            <div class="card">
+                                <h4 class="card_title">Bar Chart</h4>
+                                <div class="card-header">
+                                    <div class="form-row">
+                                        <div class="col-md-3 mb-3">
+                                            <input class="form-control" id="searchdate" name="searchdate"
+                                                   placeholder="Please Select Month"
+                                                   type="month">
+                                            <div class="d-none" id="searchdateerror" style="color:red;">
+                                                Please Select Date
+                                            </div>
+                                        </div><!-- form-group -->
+                                        <button class="btn btn-primary mb-2 " id="search_button"
+                                                onclick="searchdatanew()"
+                                                type="button"><i
+                                                class="fa fa-search "></i> Search
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="chart_container" style="height: auto">
+                                                <canvas id="chartBar1"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"
+        th:src="@{/webjars/momentjs/2.9.0/min/moment.min.js}" type="text/javascript"></script>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.3/jquery.min.js"
+        th:src="@{/webjars/jquery/2.1.3/jquery.min.js}" type="text/javascript"></script>
+<script src="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.min.js"
+        th:src="@{/webjars/fullcalendar/2.2.5/fullcalendar.min.js}" type="text/javascript"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!--base Component -->
+<script th:src="@{/dist/assets/base/baseComponet.js}" type="text/javascript"></script>
+
+<!-- Toastr Js -->
+<script th:src="@{/dist/assets/vendors/toastr/js/toastr.min.js}" type="text/javascript"></script>
+<!-- Toastr Init -->
+<script th:src="@{/dist/assets/js/init/toastr.js}" type="text/javascript"></script>
+
+
+<!-- Data Table js -->
+<script th:src="@{/dist/assets/vendors/jquery.steps/js/jquery.steps.js}"></script>
+<script th:src="@{/dist/assets/vendors/data-table/js/jquery.dataTables.js}"></script>
+<script th:src="@{/dist/assets/vendors/data-table/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/dist/assets/vendors/data-table/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/dist/assets/vendors/data-table/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/dist/assets/vendors/data-table/js/responsive.bootstrap.min.js}"></script>
+
+<!-- Data table Init -->
+<script th:src="@{/dist/assets/js/data-table.js}"></script>
+
+<!--=========================*
+           This Page Scripts
+   *===========================-->
+
+
+<!--Chart Js-->
+<script th:src="@{/dist/assets/vendors/charts/charts-bundle/Chart.bundle.js}"></script>
+
+<!--Float Js-->
+<script th:src="@{/dist/assets/vendors/charts/float-bundle/jquery.flot.js}"></script>
+<script th:src="@{/dist/assets/vendors/charts/float-bundle/jquery.flot.pie.js}"></script>
+<script th:src="@{/dist/assets/vendors/charts/float-bundle/jquery.flot.resize.js}"></script>
+
+<!--Easy pie chart Js-->
+<script th:src="@{/dist/assets/vendors/charts/sparkline/easy-pie-chart.js}"></script>
+
+
+<!--Home Script-->
+<script th:src="@{/dist/assets/js/home.js}"></script>
+
+<!--Chart Js-->
+<script th:src="@{/dist/assets/vendors/charts/charts-bundle/Chart.bundle.js}"></script>
+<script th:src="@{/dist/assets/js/init/chart-js.js}"></script>
+
+<script>
+
+    let ctx1 = document.getElementById('chartBar1').getContext('2d');
+
+    myChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Hours',
+                data: [],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    function updateChart(chart, data) {
+        chart.data.labels = data.label;
+        chart.data.datasets = [{
+            label: 'Hours',
+            labels: data.label,
+            data: data.data,
+            backgroundColor: '#276aff'
+        }];
+        chart.update();
+    }
+
+    function searchdatanew() {
+        let date = $('#searchdate').val();
+        eventbyhours(date);
+    }
+
+    function eventbyhours(date) {
+        $.ajax({
+            url: baseURL + 'report/ppu-day-report/' + date,
+            method: "GET",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            async: true,
+            dataType: "json"
+        }).done(function (resp) {
+            let chartLabel = [];
+            let chartData = [];
+            let commondata = [];
+            let array2 = [];
+            for (let data of resp) {
+                let title = data['month_date'];
+                chartLabel.push(title);
+
+                let datum = data['monthhourcount'];
+                chartData.push(parseInt(datum));
+
+                commondata = {x: title, y: datum};
+                array2.push(commondata);
+
+
+            }
+
+            console.log(commondata);
+            updateChart(myChart, {
+                label: chartLabel,
+                data: array2
+            })
+        });
+    };
+
+
+</script>
+
+</body>
+</html>
+

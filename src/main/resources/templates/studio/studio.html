@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="mb-3">
+                        <i class="fa fa-building"></i> Studio List
+                        <a class="btn btn-success"
+                           href="/studio/add"
+<<<<<<< HEAD
+                           tabindex="1" th:if="${role == 'Admin' || role == 'Engineer'}">
+=======
+                           tabindex="1" th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }">
+>>>>>>> 4609734 (Initial commit)
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;New Studio
+                        </a>
+                    </h1>
+
+                    <hr>
+
+                    <table class="table table-hover table-striped" id="myTable" th:if="${not #lists.isEmpty(studio)}">
+                        <thead>
+                        <tr>
+                            <th> Index</th>
+                            <th> Studio Name</th>
+                            <th> Location</th>
+                            <th> Code</th>
+                            <th> Modify</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="studio, rowCount : ${studio}">
+                            <th th:text="${rowCount.count}"></th>
+                            <th th:text="${studio.studioName}"></th>
+                            <th th:text="${studio.location}"></th>
+                            <th th:text="${studio.code}"></th>
+
+                            <th>
+                                <a class="btn btn-primary btn-sm" id="studio" th:href="${'/studio/' + studio.id}"><i
+                                        class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
+                                <a class="btn btn-success btn-sm" id="studioEdit"
+                                   th:href="${'/studio/edit/' + studio.id}"
+<<<<<<< HEAD
+                                   th:if="${role == 'Admin' || role == 'Engineer'  }"><i
+                                        class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
+                                <a class="btn btn-danger btn-sm" id="studioRemove"
+                                   th:href="${'/studio/delete/' + studio.id}"
+                                   th:if="${role == 'Admin' || role == 'Engineer' }">
+=======
+                                   th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }"><i
+                                        class="fa fa-edit" style="font-size: 15px"></i>&nbsp;Edit</a>
+                                <a class="btn btn-danger btn-sm" id="studioRemove"
+                                   th:href="${'/studio/delete/' + studio.id}"
+                                   th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }">
+>>>>>>> 4609734 (Initial commit)
+                                    <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"--> <i
+                                        class="fa fa-trash" style="font-size: 15px"></i> Delete</a>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--Error-->
+                    <div class="row" th:if="${ #lists.isEmpty(studio)}">
+                        <div class="col-sm-12">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="text-center text-danger">
+                                    <strong>There is no sponsor upto now please add studio to the system using add user
+                                        button.</strong>
+                                </h3>
+                            </div>
+                        </div>
+                        <script>
+                            /*active boostrap alert - start*/
+                            $(".alert").alert();
+                            /*active boostrap alert - end*/
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+

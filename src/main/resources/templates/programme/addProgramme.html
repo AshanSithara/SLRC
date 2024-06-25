@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="text-dark mb-5">
+                        <i class="fa fa-user-tie font-weight-bold"></i>
+<<<<<<< HEAD
+                        <span th:text="${addStatus==true?'Add New Programme':'Update Programme Details'}"></span>
+=======
+                        <span th:text="${addStatus==true?'Add New Supplier':'Update Supplier Details'}"></span>
+>>>>>>> 4609734 (Initial commit)
+                    </h1>
+
+                    <hr>
+
+                    <form class="form-horizontal" enctype="multipart/form-data" id="form"
+                          method="POST" th:action="${addStatus==true?'/programme/save':'/programme/update'}"
+                          th:object="${programme}">
+                        <div class="row">
+                            <!--Left Side-->
+                            <div class="form-group col-md-6 col-sm-6 text-left flex-column">
+                                <!--Id-->
+                                <div class="form-row text-right" id="idStatus" th:if="${addStatus==false}">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="id">ID :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="id" readonly th:field="*{id}" type="text"/>
+                                    </div>
+                                </div>
+                                <!--Programme Name-->
+                                <div class="form-row text-right">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="name">programme Name :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="name" required tabindex="3"
+                                               th:field="*{programmeName}" type="text"/>
+                                        <span class="error" id="nameError"
+                                              th:errors="*{programmeName}"
+                                              th:if="${#fields.hasErrors('programmeName')}">Error Name</span>
+                                    </div>
+                                </div>
+                                <!--code-->
+                                <div class="form-row text-right" th:if="${addStatus==false}">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="name">Code :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="code" required tabindex="3" th:field="*{code}"
+                                               type="text"/>
+                                        <span class="error" id="codeError"
+                                              th:errors="*{code}" th:if="${#fields.hasErrors('code')}">Error Name</span>
+                                    </div>
+                                </div>
+                                <!--Producer Name-->
+                                <div class="form-row text-right">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="name">Producer Name :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="name" required tabindex="3"
+                                               th:field="*{producerName}" type="text"/>
+                                        <span class="error" id="nameError"
+                                              th:errors="*{producerName}" th:if="${#fields.hasErrors('producerName')}">Error Name</span>
+                                    </div>
+                                </div>
+                                <!--Contact Number Two-->
+                                <div class="form-row text-right">
+                                    <div class="col-md-4">
+                                        <label class="control-label" for="sponsorName"> Sponsor Name :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control " id="sponsorName" tabindex="6"
+                                               th:field="*{sponsorName}" type="text"/>
+                                        <span class="error" id="mobileTwoError"
+                                              th:errors="*{sponsorName}" th:if="${#fields.hasErrors('sponsorName')}">Error Mobile Number</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right Side-->
+                            <div class="form-group col-md-6 col-sm-6 text-right flex-column">
+                                <!--Email-->
+                                <div class="form-row text-right">
+                                    <div class="col-md-4">
+<<<<<<< HEAD
+                                        <label class="control-label" for="broadcastingDate">Broadcasting Date : (yyyy-mm-dd)</label>
+=======
+                                        <label class="control-label" for="broadcastingDate">Broadcasting Date :</label>
+>>>>>>> 4609734 (Initial commit)
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="broadcastingDate" required tabindex="7"
+                                               th:field="*{broadcastingDate}"/>
+                                        <span class="error" id="emailError"
+                                              th:errors="*{broadcastingDate}"
+                                              th:if="${#fields.hasErrors('broadcastingDate')}">Error Email</span>
+                                    </div>
+                                </div>
+                                <!--Address-->
+                                <div class="form-row text-right">
+                                    <div class="col-md-4">
+<<<<<<< HEAD
+                                        <label class="control-label" for="broadcastingTime">Broadcasting Time : (23.00h)</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="broadcastingTime" required tabindex="7"
+                                               th:field="*{broadcastingTime}"/>
+=======
+                                        <label class="control-label" for="broadcastingTime">Broadcasting Time :</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" id="broadcastingTime" required rows="4"
+                                                  style="font-size: medium" tabindex="8"
+                                                  th:field="*{broadcastingTime}"></textarea>
+>>>>>>> 4609734 (Initial commit)
+                                        <span class="error" id="addressError"
+                                              th:errors="*{broadcastingTime}"
+                                              th:if="${#fields.hasErrors('broadcastingTime')}">Error Address</span>
+                                    </div>
+                                </div>
+                                <!--Created by and created at-->
+                                <div id="updateStatus" th:if="${addStatus==false}">
+                                    <!--Created by-->
+                                    <div class="form-row text-right">
+                                        <div class="col-md-4">
+                                            <label class="control-label" for="createdBy">Created By :</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" id="createdBy" readonly th:field="*{createdBy}"
+                                                   type="text"/>
+                                        </div>
+                                    </div>
+                                    <!--Created at-->
+                                    <div class="form-row text-right">
+                                        <div class="col-md-4">
+                                            <label class="control-label" for="createdAt">Created At :</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" id="createdAt" readonly th:field="*{createdAt}"
+                                                   type="text"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Button-->
+                            <div class="form-group col-md-12 col-sm-12 text-center flex-column ">
+                                <!--Back Button-->
+                                <a class="btn btn-dark" href="/programme" tabindex="11">
+                                    <i class="fas fa-arrow-circle-left" style="font-size: 20px"></i>&nbsp;&nbsp;Back
+                                </a>
+                                <!--Save Button-->
+                                <button class="btn btn-success ml-5" tabindex="9" type="submit">
+                                    <i class="fa fa-save " style="font-size: 20px"></i>&nbsp;&nbsp;<span id="submit"
+<<<<<<< HEAD
+                                                                                                         th:text="${addStatus==true?'Save': 'update'}"></span>
+=======
+                                                                                                         th:text="${addStatus==true?'Save': '/programme/update'}"></span>
+>>>>>>> 4609734 (Initial commit)
+                                </button>
+                                <!--Cancel Button-->
+                                <button class="btn btn-warning ml-5" tabindex="10" type="reset">
+                                    <i class="far fa-times-circle" style="font-size: 20px"></i>&nbsp;&nbsp;Cancel
+                                </button>
+                            </div>
+                            <!--Error-->
+                            <div class="form-row">
+                                <label id="errorLabel" th:if="${#fields.hasErrors('*')}"
+                                       th:text="'Errors: '">Errors: </label>
+                                <ul>
+                                    <li class="error" id="error" th:each="err: ${#fields.errors('*')}"
+                                        th:text="${err}"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+
+

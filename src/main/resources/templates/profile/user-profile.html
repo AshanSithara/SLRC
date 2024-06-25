@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Employee </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        User Profile Details
+                    </h1>
+
+                    <div class="form-group" th:if="${result}">
+                        <div class="row">
+                            <div class="col" id="filesList">
+                                <div class="col">
+                                    <div class="alert alert-warning alert-dismissible fade show"
+                                         role="alert">
+                                        <div class="card text-center">
+                                            <div class="card-body">
+                                                <img alt="Employee images" class="rounded"
+                                                     id="img"
+                                                     style="height: 150px; width: 150px; border-radius: 10px"
+                                                     th:src="${files.url}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <div class="view-info">
+                            <div class="general-info">
+                                <div class="row" th:each="data, rowCount : ${profile}">
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="table-responsive">
+                                            <table class="table m-0">
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">Username</th>
+                                                    <td th:text="${data.username}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Mobile Number</th>
+                                                    <td th:text="${data.mobileOne}"></td>
+                                                </tr>
+                                                <tr th:unless="${role == 'Admin' || role == 'Sponsor'}">
+                                                    <th scope="row">Gender</th>
+                                                    <td th:text="${data.gender}"></td>
+                                                </tr>
+                                                <tr th:unless="${role == 'Admin'}">
+                                                    <th scope="row">Home Address</th>
+                                                    <td th:text="${data.address}"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">Account Type</th>
+                                                    <td th:text="${role}"></td>
+                                                </tr>
+                                                <tr th:unless="${role == 'Admin'}">
+                                                    <th scope="row">Email Address</th>
+                                                    <td th:text="${data.email}"></td>
+                                                </tr>
+                                                <tr th:unless="${role == 'Admin' || role == 'Sponsor'}">
+                                                    <th scope="row">NIC</th>
+                                                    <td th:text="${data.nic}"></td>
+
+                                                </tr>
+                                                <tr th:unless="${role == 'Admin' || role == 'Sponsor' }">
+                                                    <th scope="row">Birth Date</th>
+                                                    <td th:text="${data.dateOfBirth}"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        Event Details
+                    </h1>
+
+                    <table class="table table-hover table-striped text-dark" id="myTable1">
+                        <thead>
+                        <tr>
+                            <th> Event ID</th>
+                            <th> Event Title</th>
+                            <th> Description</th>
+                            <th> Event Type</th>
+                            <th> Studio Name</th>
+                            <th> Programme Name</th>
+                            <th> Start Date Time</th>
+                            <th> End Date Time</th>
+                            <th> Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="event, rowCount : ${events}">
+                            <th th:text="${event.id}"></th>
+                            <th th:text="${event.title}"></th>
+                            <th th:text="${event.description}"></th>
+                            <th th:text="${event.eventtype}"></th>
+                            <th th:text="${event.studio.studioName}"></th>
+                            <th th:text="${event.programme.programmeName}"></th>
+                            <th th:text="${#temporals.format(event.start)}"></th>
+                            <th th:text="${#temporals.format(event.finish)}"></th>
+                            <th th:text="${event.status}"></th>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <br>
+                <br>
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        PPU Event Details
+                    </h1>
+
+                    <table class="table table-hover table-striped text-dark" id="myTable">
+                        <thead>
+                        <tr>
+                            <th> Event ID</th>
+                            <th> Event Title</th>
+                            <th> Description</th>
+                            <th> Studio Name</th>
+                            <th> PPU Name</th>
+                            <th> Start Date Time</th>
+                            <th> End Date Time</th>
+                            <th> Status</th>
+                        </tr>
+                        </thead>
+                        <tr th:each="ppu, rowCount : ${data}">
+                            <th th:text="${ppu.id}"></th>
+                            <th th:text="${ppu.title}"></th>
+                            <th th:text="${ppu.description}"></th>
+                            <th th:text="${ppu.studio.studioName}"></th>
+                            <th th:text="${ppu.ppu.PPUname}"></th>
+                            <th th:text="${#temporals.format(ppu.start)}"></th>
+                            <th th:text="${#temporals.format(ppu.finish)}"></th>
+                            <th th:text="${ppu.status}"></th>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+<script>
+    $('#myTable1').DataTable();
+</script>
+</body>
+</html>

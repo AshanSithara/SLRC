@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Broadcast Management </title>
+</head>
+<!--=========================*
+           Toastr Css
+*===========================-->
+<link rel="stylesheet" th:href="@{/dist/assets/vendors/toastr/css/toastr.min.css}">
+
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        Broadcast Details
+
+                        <a class="btn btn-lg btn-success float-lg-right" href="/broadcast/real-time-broadcast"
+                           tabindex="1" >
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;Real Time Broadcast
+                        </a>&nbsp;
+                    </h1>
+
+
+                    <div class="card-block">
+                        <div class="view-info">
+                            <div class="general-info">
+                                <div class="row">
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="table-responsive">
+                                            <table class="table m-0">
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">Broadcast Name</th>
+                                                    <td th:text="${broadcast.name}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Broadcast Code</th>
+                                                    <td th:text="${broadcast.broadcastcode}"></td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-xl-6">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">Broadcast Date</th>
+                                                    <td th:text="${broadcast.broadcastdate}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Created By</th>
+                                                    <td th:text="${broadcast.createdBy}"></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-4"><!--Left Side-->
+
+                                <div class="form-group">
+
+                                    <label class="control-label" for="ccode">C - Code :</label>
+                                    <select class="form-control" id="ccode" required
+                                            tabindex="3">
+                                        <option value="none">Please select</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="programmebegintime">Programme Begin Time :</label>
+                                    <input class="form-control" id="programmebegintime" type="time" required>
+                                    <input class="form-control d-none" id="brid" type="text" th:value="${broadcast.id}"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="programmeendtime">Programme End Time :</label>
+                                    <input class="form-control" id="programmeendtime" type="time" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6"><!--Right Side-->
+                                <div class="card-block d-none " id="loadcarddata">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary" id="btnsave" onclick="onclickbtnsave()" type="button">
+                                <i class="fa fa-save mr-1"></i>
+                                <span th:text="Save"></span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+                    <!--heading Area-->
+                    <h1 class="text-dark"><i class="fa fa-user-friends font-weight-bold"></i>
+                        Broadcast Details
+                    </h1>
+
+                    <table class="table table-hover table-striped text-dark" id="myTable"
+                    >
+                        <thead>
+                        <tr>
+                            <th> ID</th>
+                            <th> Programme Begin Time</th>
+                            <th> Programme End Time</th>
+                            <th> Created by</th>
+                            <th> Programme Date</th>
+                            <th> Status</th>
+                            <th> Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="broadcastdetail, rowCount : ${broadcastdetails}">
+                            <th th:text="${broadcastdetail.id}"></th>
+                            <th th:text="${broadcastdetail.programmebegintime}"></th>
+                            <th th:text="${broadcastdetail.programmeendtime}"></th>
+                            <th th:text="${broadcastdetail.createdBy}"></th>
+                            <th th:text="${broadcastdetail.broadcast.broadcastdate}"></th>
+
+                            <th th:text="${broadcastdetail.status}"></th>
+                            <th>
+                                <a id="addtobroadcast" th:href="${'/broadcast-detail/delete/' + broadcastdetail.id}"
+                                   class="btn  btn-danger"><i class="fa fa-recycle"></i>
+                                </a>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+<!--base Component -->
+<script type="text/javascript" th:src="@{/dist/assets/base/baseComponet.js}"></script>
+
+<!-- Toastr Js -->
+<script type="text/javascript" th:src="@{/dist/assets/vendors/toastr/js/toastr.min.js}"></script>
+<!-- Toastr Init -->
+<script type="text/javascript" th:src="@{/dist/assets/js/init/toastr.js}"></script>
+<script>
+
+    function loadallClib() {
+        $.ajax({
+            url: baseURL + "clibrary/all",
+            method: 'GET',
+            async: true,
+            dataType: "json"
+        }).done(function (resp) {
+            $('#ccode').empty();
+
+            let row = "<option value=\"none\" >Select C-Library Code</option>";
+            $('#ccode').append(row);
+            let row1 = "";
+            for (let i in resp) {
+                let response = resp[i];
+
+                let id = response['id'];
+                let code = response['code'];
+                row1 = "<option value=" + id + " >" + code + "</option>";
+                $('#ccode').append(row1);
+
+            }
+        });
+    }
+
+    loadallClib();
+
+
+    $("#ccode").change(function () {
+        // var end = this.value;
+        var title = $('#ccode').val();
+        if (title == "none") {
+            $('#loadcarddata').addClass('d-none');
+        } else {
+            $('#loadcarddata').removeClass('d-none');
+            $.ajax({
+                url: baseURL + "clibrary/all",
+                method: 'GET',
+                async: true,
+                dataType: "json"
+            }).done(function (resp) {
+                $('#loadcarddata').empty();
+                let row1 = "";
+                for (let i in resp) {
+                    let response = resp[i];
+
+                    let episodeNumber = response['episodeNumber'];
+                    let programmeName = response['programmeName'];
+                    let code = response['id'];
+                    if (code==title) {
+                        row1 = "<div class=\"view-info\">\n" +
+                            "<div class=\"general-info\">\n" +
+                            "   <div class=\"row\">\n" +
+                            "   <div class=\"col-lg-12 col-xl-6\">\n" +
+                            "   <div class=\"table-responsive\">\n" +
+                            "   <table class=\"table\">\n" +
+                            "   <tbody>\n" +
+                            "   <tr>\n" +
+                            "   <th scope=\"row\">Programme Name</th>\n" +
+                            "<td>" + programmeName + "</td>\n" +
+                            "</tr>\n" +
+                            "</tbody>\n" +
+                            "</table>\n" +
+                            "</div>\n" +
+                            "</div>\n" +
+                            "<div class=\"col-lg-12 col-xl-6\">\n" +
+                            "<div class=\"table-responsive\">\n" +
+                            "<table class=\"table\">\n" +
+                            "<tbody>\n" +
+                            "<tr>\n" +
+                            "<th scope=\"row\">Episode Number</th>\n" +
+                            "<td>" + episodeNumber + "</td>\n" +
+                            "</tr>\n" +
+                            "</tbody>\n" +
+                            "</table>\n" +
+                            "</div>\n" +
+                            "</div>\n" +
+
+                            "</div>\n" +
+
+                            "</div>\n" +
+                            "</div>";
+                        $('#loadcarddata').append(row1);
+                    }
+    }
+    });
+    }
+
+    });
+
+
+
+    $(function () {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        // or instead:
+        // var maxDate = dtToday.toISOString().substr(0, 10);
+
+        $('#broadcastdate').attr('min', maxDate);
+    });
+
+    function onclickbtnsave() {
+        var ccode = $('#ccode').val();
+        var programmebegintime = $('#programmebegintime').val();
+        var programmeendtime = $('#programmeendtime').val();
+        var brid = $('#brid').val();
+
+
+        if (programmeendtime > programmebegintime) {
+            $.ajax({
+                url: baseURL + "broadcast-detail/date-check/" + brid + "/" + programmebegintime + "/" + programmeendtime,
+                method: 'GET',
+                async: true,
+                dataType: "json"
+            }).done(function (resp) {
+                if (resp) {
+                    $.ajax({
+                        type: "POST",
+                        url: baseURL + 'broadcast-detail/add',
+                        processData: false,
+                        cache: false,
+                        enctype: 'multipart/form-data',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({
+                            programmebegintime: programmebegintime,
+                            programmeendtime: programmeendtime,
+                            broadcastid: brid,
+                            clibraryid: ccode
+                        }),
+
+                        error: function (res) {
+
+                            showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+                        },
+                        success: function (res) {
+                            showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Added  Data Successfully !');
+                            if (true){
+                                setTimeout(location.reload.bind(location), 4000);
+                            }
+                        }
+                    }).done(function (data) {
+                        console.log(data);
+                    });
+                } else {
+                    showToast(TOAST_TYPE.DANGER, 'Error !', 'Has Another Broadcast to this Date !');
+                }
+            });
+        } else {
+            showToast(TOAST_TYPE.DANGER, 'Error !', 'Time Pick Error Please check and Submit !');
+        }
+    }
+</script>
+</body>
+</html>

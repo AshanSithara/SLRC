@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="mb-5">
+                        <i class="fa fa-user-plus"></i>
+<<<<<<< HEAD
+                        <span th:text="${addStatus==true?'Add New Episode':'Update Episode Details'}"></span>
+=======
+                        <span th:text="${addStatus==true?'Add New Supplier':'Update Supplier Details'}"></span>
+>>>>>>> 4609734 (Initial commit)
+                    </h1>
+
+                    <hr>
+
+                    <form class="form-horizontal" enctype="multipart/form-data"
+                          id="form"
+                          method="POST" th:action="${addStatus==true?'/clibrary/save':'/clibrary/update'}"
+                          th:object="${clibrary}">
+
+                        <div class="form-group row" id="idStatus" th:if="${addStatus==false}">
+                            <label class="col-md-4" for="id">ID :</label>
+                            <input class="form-control col-md" id="id" readonly th:field="*{id}" type="text"/>
+                        </div>
+
+                        <div class="form-group row">
+<<<<<<< HEAD
+                            <label class="col-md-4" for="programmeName">Programme Name :</label>
+=======
+                            <label class="col-md-4" for="programmeName">programme Name :</label>
+>>>>>>> 4609734 (Initial commit)
+                            <input class="form-control col-md" id="programmeName" required tabindex="3"
+                                   th:field="*{programmeName}" type="text"/>
+                            <span class="error" id="nameError"
+                                  th:errors="*{programmeName}"
+                                  th:if="${#fields.hasErrors('programmeName')}">Error Name</span>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="episodeNumber"> Episode Number :</label>
+                            <textarea class="form-control col-md" id="episodeNumber" required rows="4"
+                                      style="font-size: medium" tabindex="8" th:field="*{episodeNumber}"></textarea>
+                            <span class="error" id="addressError"
+                                  th:errors="*{episodeNumber}" th:if="${#fields.hasErrors('episodeNumber')}">Error Address</span>
+                        </div>
+
+                        <div class="form-group row" th:if="${addStatus==false}">
+                            <label class="col-md-4" for="code">Code :</label>
+                            <input class="form-control col-md" id="code" required tabindex="3" th:field="*{code}"
+                                   type="text"/>
+                            <span class="error" id="codeError"
+                                  th:errors="*{code}" th:if="${#fields.hasErrors('code')}">Error Name</span>
+                        </div>
+
+                        <div class="form-group row" th:if="${addStatus==false}">
+                            <label class="col-md-4" for="createdBy">Created By :</label>
+                            <input class="form-control col-md" id="createdBy" readonly th:field="*{createdBy}"
+                                   type="text"/>
+                        </div>
+
+                        <div class="form-group row" th:if="${addStatus==false}">
+                            <label class="col-md-4" for="createdAt">Created At :</label>
+                            <input class="form-control col-md" id="createdAt" readonly th:field="*{createdAt}"
+                                   type="text"/>
+                        </div>
+
+                        <div class="row justify-content-center align-items-center">
+                            <!--Back Button-->
+                            <a class="btn btn-dark" href="/clibrary" tabindex="11">
+                                <i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;Back
+                            </a>
+                            <!--Save Button-->
+                            <button class="btn btn-success ml-5" tabindex="9" type="submit">
+                                <i class="fa fa-save "></i>&nbsp;&nbsp;<span id="submit"
+<<<<<<< HEAD
+                                                                             th:text="${addStatus==true?'Save': 'update'}"></span>
+=======
+                                                                             th:text="${addStatus==true?'Save': '/clibrary/update'}"></span>
+>>>>>>> 4609734 (Initial commit)
+                            </button>
+                            <!--Cancel Button-->
+                            <button class="btn btn-warning ml-5" tabindex="10" type="reset">
+                                <i class="far fa-times-circle"></i>&nbsp;&nbsp;Cancel
+                            </button>
+                        </div>
+
+                        <!--Error-->
+                        <div class="form-row">
+                            <label id="errorLabel" th:if="${#fields.hasErrors('*')}"
+                                   th:text="'Errors: '">Errors: </label>
+                            <ul>
+                                <li class="error" id="error" th:each="err: ${#fields.errors('*')}"
+                                    th:text="${err}"></li>
+                            </ul>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+

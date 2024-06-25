@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf Springboot </title>
+</head>
+<body>
+<<<<<<< HEAD
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- right side content wrapping area -->
+=======
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+    <!-- rite side content wrapping area -->
+>>>>>>> 4609734 (Initial commit)
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+<<<<<<< HEAD
+                    <h1 class="mb-5">
+                        <i class="fa fa-user-edit"></i>
+                        <span id="formHeader" th:text="${addStatus==true?'New Member':'Update Member'}"></span>
+                    </h1>
+                    <div class="col">
+                        <a href="/member" class="btn btn-primary">
+                            <i class="fa fa-list"></i>&nbsp; View List
+                        </a>
+                    </div>
+
+
+                    <hr>
+                    <div id="employeeFindForm" th:if="${employeeDetailShow==false}">
+
+                        <form class="form-horizontal" enctype="multipart/form-data"  method="POST"
+                              th:action="${'/member/newTeam'}" th:object="${employee}"  >
+
+                            <div class="form-group row"  >
+                                <label class="col-md-4"  style=" font-weight: bold;" for="selectParameter">Parameter :</label>
+
+                                <select id="selectParameter" class="form-control" tabindex="1" required>
+                                    <option value="">Please select</option>
+                                    <option value="nic">NIC Number</option>
+                                </select>
+                            </div>
+                            <div class="form-group row" >
+                                <label class="col-md-4"  style=" font-weight: bold;"for="valueEmployee">Value :</label>
+                                <input id="valueEmployee"  class="form-control" type="text" required autofocus/>
+                            </div>
+
+                            <div class="row justify-content-center align-items-center">
+
+                                <!--Search Button-->
+
+                                <button class="btn btn-success ml-5 btn-lg"  type="submit" id="btnSearchEmployee">
+                                    <i class="fa fa-search " ></i>Search
+                                </button>
+                                <!--Cancel Button-->
+                                <button class="btn btn-warning ml-5 btn-lg"  type="reset">
+                                    <i class="far fa-times-circle"></i>&nbsp;&nbsp;Cancel
+                                </button>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+
+
+                    <!--Employee not fount message-->
+                    <div id="employeeNotFoundShow" th:if="${employeeNotFoundShow==true}"
+                         class="alert alert-warning alert-dismissible fade show text-center col-md-8 " team="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong><span id="employeeNotFound" th:text="${employeeNotFound}"></span></strong>
+                        <script>
+                            $(".alert").alert();
+                        </script>
+                    </div>
+
+
+
+
+
+                    <!--Member add from-------------------------------------------------------------------------------------------------- -->
+
+                    <div th:if="${employeeDetailShow==true}" id="memberFormShow">
+
+                        <form class="form-horizontal" enctype="multipart/form-data"  method="POST"
+                              id="formMember" th:action="${addStatus==true?'/member/add':'/member/update'}" th:object="${membermodel}" autocomplete="false" >
+
+                            <div id="idHide" th:if="${addStatus==false}" class="form-group row"  >
+                                <label class="col-md-4"  style=" font-weight: bold;"  for="id">ID :</label>
+
+                                <input class="form-control" th:field="*{id}"  id="id" type="text" readonly/>
+                            </div>
+                            <!--Employee details Display-->
+                            <div class="form-group row" >
+                                <label class="col-md-4"  style=" font-weight: bold;"for="employee">Employee :</label>
+                                <select class="form-control" th:field="*{employee}" th:each="e : ${employee}" name="employee"
+                                        id="employee" required>
+                                    <option id="employeeList"
+                                            th:text="${employee.title} + ${' '} + ${employee.name} +${' - '} + ${employee.nic}"
+                                            th:value="${employee.id}"
+                                            th:field="*{employee}" value="">Please select
+                                    </option>
+                                </select>
+
+                                <div id="employeeNameBox" th:if="${addStatus==false}"> <strong>
+                                    <span id="employeeName" th:text="${membermodel.employee.title.title} + ${' '} + ${membermodel.employee.name} +${' - '} + ${membermodel.employee.nic}"></span>
+                                    <input type="hidden" id="employeeSelected" th:field="*{employee}">
+                                </strong>
+                                </div>
+                            </div>
+
+                            <!--Member name-->
+                            <div class="form-group row" >
+                                <label class="col-md-4" style=" font-weight: bold;"for="memberName">Member Name :</label>
+                                <input class="form-control" th:field="*{memberName}" id="memberName"
+                                       placeholder="Enter Member Name Here" required type="text" />
+                            </div>
+                            <!--Right Side-->
+                            <div class="form-group col-md-6  flex-column">
+                                <!--Teams Display-->
+                                <div class="form-row">
+                                    <label class="control-label" for="team">Team :</label>
+                                    <select id="team"  th:field="*{team}"   class="form-control" size="16" multiple required>
+                                        <option id="teamList" th:each="team, rowCount : ${teamList}"  th:onclick="|loadContent('${team.id}')|"
+                                                th:text="${rowCount.count} +${'. '}+${team.teamName}"
+                                                th:value="${team.id}"
+                                                th:field="*{team}" value=""></option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center align-items-center">
+
+                                <!--Save Button-->
+
+                                <button class="btn btn-success ml-5 btn-lg" type="submit">
+                                    <i class="fa fa-save" style="font-size: 20px"></i>&nbsp;
+                                    <span id="submit" th:text="${addStatus==true?'Save': 'Update'}">   </span>
+                                </button>
+
+
+
+
+                            </div>
+
+                        </form>
+                    </div>
+                    <appending></appending>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- right side content wrapping area -->
+</main>
+
+
+
+=======
+                    <h1 class="mb-3">
+                        <i class="fa fa-building"></i>
+                        <span th:text="${addStatus==true?'Add New Studio':'Update Studio Details'}"></span>
+                    </h1>
+
+                    <hr>
+
+
+<!--Employee find-->
+<div  id="employeeFindForm" th:if="${employeeDetailShow==false}">
+    <div class="col-sm-12 flex-column ">
+        <form id="form" method="POST" th:action="${'/member/newTeam'}" th:object="${employee}"
+              enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="col-5 flex-column">
+                    <div class="form-group">
+                        <div class="col-4">
+                            <label class="control-label" for="selectParameter">Parameter :</label>
+                        </div>
+                        <div class="col-8">
+                            <select id="selectParameter" class="form-control" tabindex="1" required>
+                                <option value="">Please select</option>
+                                <option value="nic">NIC Number</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 flex-column">
+                    <div class="form-group">
+                        <div class="col-5">
+                            <label class="control-label" for="valueEmployee">Value :</label>
+                        </div>
+                        <div class="col-7">
+                            <input id="valueEmployee" tabindex="2" class="form-control" type="text" minlength="3"
+                                   required
+                                   autofocus/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 flex-column">
+                    <div class="form-group">
+                        <div class="">
+                            <div class="col-2">
+                                <label class="control-label"></label>
+                            </div>
+                            <div class="col-10 text-left" id="btnSearchEmployee">
+                                <button class="btn btn-success" tabindex="3" type="submit">
+                                    <i class="fa fa-search " style="font-size: 20px"></i>&nbsp; &nbsp;Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--Employee not fount message-->
+<div id="employeeNotFoundShow" th:if="${employeeNotFoundShow==true}"
+     class="alert alert-warning alert-dismissible fade show text-center" team="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong><span id="employeeNotFound" th:text="${employeeNotFound}"></span></strong>
+    <script>
+        $(".alert").alert();
+    </script>
+</div>
+
+<!--Member add from-->
+<div class="container-fluid bg-dark formBorder" th:if="${employeeDetailShow==true}" id="memberFormShow">
+    <form id="formMember" th:action="${addStatus==true?'/member/add':'/member/update'}" th:object="${membermodel}"
+          class="form-horizontal" method="POST" autocomplete="false">
+        <div class="row">
+            <!--Left Side-->
+            <div class="form-group col-md-5 col-sm-7 text-left flex-column">
+                <div id="idHide" th:if="${addStatus==false}" class="form-row">
+                    <div class="col-md-4">
+                        <label class="control-label" for="id">ID :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" th:field="*{id}"  id="id" type="text" readonly/>
+                    </div>
+                </div>
+                <!--Employee details Display-->
+                <div class="form-row">.
+
+                    <div class="col-md-4">
+                        <label class="control-label" for="employee">Employee :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select class="form-control" th:field="*{employee}" th:each="e : ${employee}" name="employee"
+                                id="employee" required>
+                            <option id="employeeList"
+                                    th:text="${employee.title} + ${' '} + ${employee.name} +${' - '} + ${employee.nic}"
+                                    th:value="${employee.id}"
+                                    th:field="*{employee}" value="">Please select
+                            </option>
+                        </select>
+                        <div id="employeeNameBox" th:if="${addStatus==false}">
+                            <strong>
+                                <span id="employeeName"
+                                      th:text="${membermodel.employee.title.title} + ${' '} + ${membermodel.employee.name} +${' - '} + ${membermodel.employee.nic}"></span>
+                                <input type="hidden" id="employeeSelected" th:field="*{employee}">
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+                <!--Member name-->
+                <div class="form-row">
+                    <label class="control-label col-md-4" for="memberName">Member Name :</label>
+                    <div class="col-md-8">
+                        <input class="form-control" th:field="*{memberName}" id="memberName"
+                               placeholder="Enter Member Name Here" required type="text"/>
+                    </div>
+                </div>
+                <!--Password-->
+                <!--   <div class="form-row">
+                       <label class="control-label col-md-4" for="password">Password :</label>
+                       <div class="col-md-8">
+                           <input class="form-control pwd" id="password" th:field="*{password}"
+                                  placeholder="Enter Password Here" required type="password" min="6"
+                           />
+                           <div class="text-right">
+                               <span id="result"></span>
+                           </div>
+                       </div>
+                   </div>-->
+
+              <!--  <div class="form-row">
+                    <div class="form-row alert alert-danger text-center">
+                        <strong>Attention !</strong>
+                        If Employee is belong to supper senior category.
+                        <strong>Please select one or two work station </strong>.
+                    </div>
+                </div>-->
+            </div>
+            <!--Right Side-->
+            <div class="form-group col-md-5 col-sm-7 text-left flex-column">
+                <!--Teams Display-->
+                <div class="form-row">
+                    <label class="control-label" for="team">Team :</label>
+                    <select id="team"  th:field="*{team}"   class="form-control" size="16" multiple required>
+                        <option id="teamList" th:each="team, rowCount : ${teamList}"  th:onclick="|loadContent('${team.id}')|"
+                                th:text="${rowCount.count} +${'. '}+${team.teamName}"
+                                th:value="${team.id}"
+                                th:field="*{team}" value=""></option>
+                    </select>
+
+                </div>
+            </div>
+
+            <!--Button-->
+            <div class="form-group col-md-12 col-sm-12 text-center flex-column">
+                <button class="btn btn-success" type="submit">
+                    <i class="fa fa-save" style="font-size: 20px"></i>&nbsp; &nbsp;<span
+                        id="submit" th:text="${addStatus==true?'Save': 'Update'}">                        </span>
+                </button>
+            </div>
+        </div>
+        <!--Error-->
+        <div class="form-row">
+            <label id="errorLabel" th:if="${#fields.hasErrors('*')}" th:text="'Errors: '">Errors: </label>
+            <ul>
+                <li id="errorDisplay" class="error" th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+            </ul>
+        </div>
+    </form>
+    <appending></appending>
+
+
+
+</div>
+
+
+
+
+
+</main>
+>>>>>>> 4609734 (Initial commit)
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+<script type="text/javascript">
+    function loadContent(url) {
+        // $('#appending').empty();
+        // let row="<input id=\"doc\" th:name=\"doc\" value="+url+" name=\"doc\" disabled class=\"d-none\">";
+        // $('#appending').append(row);
+    }
+</script>
+
+</body>
+<<<<<<< HEAD
+<!--footer include-->
+=======
+<!-- footer section -->
+>>>>>>> 4609734 (Initial commit)
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+</html>

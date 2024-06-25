@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4609734 (Initial commit)
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/style.css}" media="all" rel="stylesheet" type="text/css"/>
+
+<head >
+    <meta charset="UTF-8">
+    <title>Srilanka Rupavahini </title>
+<<<<<<< HEAD
+    <link rel="icon" href="../img/logo.png">
+=======
+>>>>>>> 4609734 (Initial commit)
+
+
+
+</head>
+<body>
+<div class="loginbox">
+    <img th:src="@{/dist/img/avatar.png}" class="avatar">
+    <h1>Login Here</h1>
+
+    <form th:action="${'/login'}" method="POST">
+        <p>Username</p>
+        <input type="text" id="username" th:name="${'username'}" class="form-control" placeholder="username"
+               required>
+        <p>Password</p>
+        <input type="password" id="inputPassword" th:name="${'password'}" class="form-control"
+               placeholder="password"
+               required>
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20px; color: #FF1C19;">Username or Password is invalid.</p>
+        </div>
+
+        <input type="submit" name="" value="Login">
+    </form>
+
+</div>
+
+</body>
+</html>
+
+
+

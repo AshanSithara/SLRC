@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4609734 (Initial commit)
+                    <h1 class="mb-5">
+                        <i class="fa fa-user-friends"></i> Team Management
+
+                        <a class="btn btn-success"
+                           href="/team/add"
+<<<<<<< HEAD
+                           th:if="${role == 'Admin' || role == 'Engineer'}">
+=======
+                           th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }">
+>>>>>>> 4609734 (Initial commit)
+                            <i class="fa fa-user-plus"></i> &nbsp; New Team
+                        </a>
+                    </h1>
+
+                    <hr>
+<<<<<<< HEAD
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+
+                                    <h3>
+                                        <i class="fa fa-user"></i> Member
+                                    </h3>
+
+                                    <p>Add Member Here..</p>
+
+                                    <a class="text-decoration-none text-white" href="member">
+                                        Goto <i class="fa fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+
+                                    <h3>
+                                        <i class="fa fa-user-plus"></i> Add Member
+                                    </h3>
+
+                                    <p>Add Member</p>
+
+                                    <a class="text-decoration-none text-white" href="member/add">
+                                        Goto <i class="fa fa-arrow-right"></i>
+                                    </a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+
+                                    <h3>
+                                        <i class="fa fa-user-plus"></i> Add Team
+                                    </h3>
+
+                                    <p>Add TEam Here...</p>
+
+                                    <a class="text-decoration-none text-white" href="team">
+                                        Goto <i class="fa fa-arrow-right"></i>
+                                    </a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+=======
+>>>>>>> 4609734 (Initial commit)
+
+                    <table class="table table-striped table-condensed" th:if="${not #lists.isEmpty(team)}">
+                        <thead>
+                        <tr>
+                            <th> Index</th>
+                            <th> Name</th>
+                            <th> Modify</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="team, rowCount : ${team}">
+                            <th th:text="${rowCount.count}"></th>
+                            <th th:text="${team.teamName}"></th>
+                            <th>
+                                <a class="btn btn-primary btn-sm mr-2 p-2"
+                                   id="edit"
+                                   th:href="${'/team/edit/' + team.id}"
+<<<<<<< HEAD
+                                   th:if="${role == 'Admin' || role == 'Engineer' }">Edit
+=======
+                                   th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }">Edit
+>>>>>>> 4609734 (Initial commit)
+                                </a>
+                                &nbsp;
+                                <a class="btn btn-danger btn-sm mr-2 p-2"
+                                   id="remove"
+                                   onclick="if
+                        (!(confirm('Are you sure you want to delete this team?'))) return false"
+                                   th:href="${'/team/remove/' + team.id}"
+<<<<<<< HEAD
+                                   th:if="${role == 'Admin' || role == 'Engineer'}"
+=======
+                                   th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }"
+>>>>>>> 4609734 (Initial commit)
+                                >Delete</a></th>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+
+<link rel='stylesheet' th:href="@{/css/fullcalendar.css}"/>
+<link media='print' rel='stylesheet' th:href="@{/css/fullcalendar.print.css}"/>
+<script th:src="@{/js/jquery.min.js}"></script>
+
+<link href="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.css"
+      rel="stylesheet" th:href="@{/webjars/fullcalendar/2.2.5/fullcalendar.css}">
+<link href="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.print.css"
+      media="print" rel="stylesheet" th:href="@{/webjars/fullcalendar/2.2.5/fullcalendar.print.css}">
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+<!--=========================*
+          All CSS
+*===========================-->
+
+<link rel="stylesheet" th:href="@{/css/all.css}">
+<script th:src="@{/js/all.js}" type="text/javascript"></script>
+<!--=========================*
+           Toastr Css
+*===========================-->
+<link rel="stylesheet" th:href="@{/css/toastr.min.css}">
+
+<!--=========================*
+          Datatable
+*===========================-->
+<!-- Start datatable css -->
+<link rel="stylesheet" th:href="@{/css/jquery.dataTables.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/dataTables.bootstrap4.min.css}"
+      type="text/css">
+<link rel="stylesheet" th:href="@{/css/responsive.bootstrap.min.css}"
+      type="text/css">
+<link rel="stylesheet" th:href="@{/css/responsive.jqueryui.min.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/jquery.steps.css}" type="text/css">
+
+<style>
+
+    body {
+        margin: 0 !important;
+        padding: 0;
+        font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+        font-size: 14px;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+</style>
+
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="mb-3">
+                        <i class="fa fa-chart-bar"></i> Event Report
+                    </h1>
+
+                    <hr>
+
+
+                    <h4 class="card_title">Event Details</h4>
+
+                    <div class="row">
+
+                        <div class="form-group row">
+                            <label class="col-md-4" for="searchdate">Date </label>
+                            <input class="form-control col-md" id="searchdate" placeholder="Select Date"
+                                   required=""
+                                   type="date">
+                            <span class="d-none" id="searchdateerror" style="color:red;">
+                                Please Select Date
+                            </span>
+                        </div>
+
+                        <div class="from-group col-md-3">
+                            <label for="searchbegintimeto">Event Begin Time TO </label>
+                            <input class="form-control" id="searchbegintimeto"
+                                   placeholder="Select Begin Time TO"
+                                   required=""
+                                   type="time">
+                            <span class="d-none" id="searchbegintimetoerror" style="color:red;">
+                                Please Select Begin Time TO
+                            </span>
+                        </div>
+
+                        <div class="from-group col-md-3">
+                            <label for="searchbegintimefrom">Event Begin Time FROM </label>
+                            <input class="form-control" id="searchbegintimefrom"
+                                   placeholder="Select Begin Time FROM"
+                                   required=""
+                                   type="time">
+                            <div class="d-none" id="searchbegintimefromerror" style="color:red;">
+                                Please Select Begin Time FROM
+                            </div>
+                        </div>
+
+                        <div class="from-group col-md-3">
+                            <label for="searchendtimeto">Event End Time TO </label>
+                            <input class="form-control" id="searchendtimeto"
+                                   placeholder="Select End Time TO"
+                                   required=""
+                                   type="time">
+                            <div class="d-none" id="searchendtimetoerror" style="color:red;">
+                                Please Select End Time TO
+                            </div>
+                        </div>
+
+                        <div class="from-group col-md-3">
+                            <label for="searchendtimefrom">Event End Time FROM </label>
+                            <input class="form-control" id="searchendtimefrom"
+                                   placeholder="Select End Time FROM"
+                                   required=""
+                                   type="time">
+                            <div class="d-none" id="searchendtimefromerror" style="color:red;">
+                                Please Select End Time FROM
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center align-items-center">
+                        <button class="btn btn-primary " id="search_button" onclick="searchdatanew()"
+                                type="button"><i
+                                class="fa fa-search"></i> Search
+                        </button>
+                    </div>
+
+                    <div class="table-responsive datatable-primary">
+                        <table class="text-center" id="dataTable2">
+                            <thead class="text-capitalize">
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Description</th>
+                                <th>Event Date</th>
+                                <th>Event Begin Time</th>
+                                <th>Event End Time</th>
+                                <th>Event Type</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="calendarModal"
+                         role="dialog"
+                         tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body pd-20">
+                                    <div class="row">
+                                        <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">
+                                            <input class="d-none" id="eventid">
+                                            <label class="form-control-label">Event Name : <span
+                                                    class="tx-danger">*</span></label>
+                                            <input class="form-control" id="eventnamemodal" name="eventnamemodal"
+                                                   placeholder="Event Name"
+                                                   required
+                                                   type="text">
+                                            <div class="abc d-none" id="eventnamemodalerror">
+                                                <p style="color:red;">Please Enter Valid Event Name </p>
+                                            </div>
+                                        </div><!-- form-group -->
+
+
+                                        <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">
+                                            <label class="form-control-label">Description : <span
+                                                    class="tx-danger">*</span></label>
+                                            <textarea class="form-control" id="descriptionmodal" name="descriptionmodal"
+                                                      placeholder="Description" required></textarea>
+                                            <div class="abc d-none" id="descriptionmodalerror">
+                                                <p style="color:red;">Please Enter Valid Description </p>
+                                            </div>
+                                        </div><!-- form-group -->
+
+                                        <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">
+                                            <label class="form-control-label">Event Begin Time : <span
+                                                    class="tx-danger">*</span></label>
+                                            <input class="form-control" id="EventBeginTimemodal"
+                                                   name="EventBeginTimemodal"
+                                                   placeholder="Event Begin Time"
+                                                   required type="datetime-local">
+                                            <div class="abc d-none" id="EventBeginTimemodalerror">
+                                                <p style="color:red;">Please Enter Valid Event Begin Time </p>
+                                            </div>
+                                        </div><!-- form-group -->
+                                        <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">
+                                            <label class="form-control-label">Event End Time : <span
+                                                    class="tx-danger">*</span></label>
+                                            <input class="form-control" disabled id="EventEndTimemodal"
+                                                   name="EventEndTimemodal"
+                                                   placeholder="Event End Time" required
+                                                   type="datetime-local">
+                                            <div class="abc d-none" id="EventEndTimemodalerror">
+                                                <p style="color:red;">Please Enter Valid Event End Time </p>
+                                            </div>
+                                        </div><!-- form-group -->
+                                        <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">
+                                            <div class="form-check">
+                                                <input checked class="form-check-input" id="SingleDaymodal"
+                                                       name="exampleRadiosmodal"
+                                                       type="radio" value="SingleDay">
+                                                <label class="form-check-label" for="SingleDaymodal">
+                                                    Single Day
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group wd-xs-300 col-md-6 col-sm-12 col-lg-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="BulkDaysmodal"
+                                                       name="exampleRadiosmodal" type="radio"
+                                                       value="BulkDays">
+                                                <label class="form-check-label" for="BulkDaysmodal">
+                                                    Bulk Days
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div><!-- modal-body -->
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                                    <button class="btn btn-primary" onclick="updateevent()" type="button">Save changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"
+        th:src="@{/webjars/momentjs/2.9.0/min/moment.min.js}" type="text/javascript"></script>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/3.4.1/jquery.min.js"
+        th:src="@{/webjars/jquery/3.4.1/jquery.min.js}" type="text/javascript"></script>
+<script src="http://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.min.js"
+        th:src="@{/webjars/fullcalendar/2.2.5/fullcalendar.min.js}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<!--base Component -->
+<script type="text/javascript" th:src="@{/js/baseComponet.js}"></script>
+
+<!-- Toastr Js -->
+<script type="text/javascript" th:src="@{/js/toastr.min.js}"></script>
+<!-- Toastr Init-->
+<script type="text/javascript" th:src="@{/js/toastr.js}"></script>
+
+
+<!-- Data Table js -->
+<script th:src="@{/js/jquery.steps.js}"></script>
+<script th:src="@{/js/jquery.dataTables.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/js/dataTables.responsive.min.js}"></script>
+<script th:src="@{/js/responsive.bootstrap.min.js}"></script>
+
+<!-- Data table Init -->
+<script th:src="@{/js/data-table.js}"></script>
+
+<script>
+
+    elem = document.getElementById("EventBeginTimemodal")
+    var now = new Date();
+    var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();
+    var minDate = iso.substring(0, iso.length - 8);
+    elem.value = minDate
+    elem.min = minDate
+
+    elem = document.getElementById("EventEndTimemodal")
+    var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();
+    var minDate = iso.substring(0, iso.length - 8);
+    elem.value = minDate
+    elem.min = minDate
+
+    let Table1 = $('#dataTable2').DataTable({
+        data: [],
+        "columns": [
+            {"data": "title"},
+            {"data": "description"},
+            {"data": "eventdatereturn"},
+            {"data": "starttime"},
+            {"data": "finishtime"},
+            {"data": "eventtype"},
+            {"data": "action"}
+
+        ],
+        rowCallback: function (row, data) {
+        },
+        filter: true,
+        info: true,
+        ordering: true,
+        processing: true,
+        retrieve: true
+    });
+
+    function checkbegintime(begintimeto, begintimefrom) {
+        let result = false;
+
+        $('#searchbegintimeto').css('border-color', 'red');
+        $('#searchbegintimefrom').css('border-color', 'red');
+        if (begintimeto < begintimefrom) {
+            $('#searchbegintimefrom').css('border-color', '');
+            $('#searchbegintimeto').css('border-color', '');
+            $('#searchbegintimefromerror').addClass('d-none');
+            $('#searchbegintimetoerror').addClass('d-none');
+            result = true;
+        } else {
+            $('#searchbegintimefromerror').removeClass('d-none');
+            $('#searchbegintimetoerror').removeClass('d-none');
+            $('#searchbegintimefrom').css('border-color', 'red');
+            $('#searchbegintimeto').css('border-color', 'red');
+
+            result = false;
+        }
+
+        return result;
+    }
+
+    function checkendtime(endtimeto, endtimefrom) {
+        let result = false;
+
+        $('#searchendtimeto').css('border-color', 'red');
+        $('#searchendtimefrom').css('border-color', 'red');
+        if (endtimeto < endtimefrom) {
+            $('#searchendtimefrom').css('border-color', '');
+            $('#searchendtimeto').css('border-color', '');
+            $('#searchendtimefromerror').addClass('d-none');
+            $('#searchendtimetoerror').addClass('d-none');
+            result = true;
+        } else {
+            $('#searchendtimefromerror').removeClass('d-none');
+            $('#searchendtimetoerror').removeClass('d-none');
+            $('#searchendtimefrom').css('border-color', 'red');
+            $('#searchendtimeto').css('border-color', 'red');
+
+            result = false;
+        }
+
+        return result;
+    }
+
+    Date.prototype.addHours = function (h) {
+        this.setTime(this.getTime() +
+            (h * 60 * 60 * 1000));
+        return this;
+    }
+
+    $(function () {
+
+        $('#EventBeginTimemodal').change(function () {
+
+            elem = document.getElementById("EventEndTimemodal");
+            var now = new Date($('#EventBeginTimemodal').val());
+            now.addHours(2);
+            var iso = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString();
+            var minDate = iso.substring(0, iso.length - 8);
+            elem.value = minDate;
+            elem.min = minDate;
+        });
+    });
+
+    function searchdatanew() {
+        let begintimeto = $('#searchbegintimeto').val();
+        let begintimefrom = $('#searchbegintimefrom').val();
+        let endtimeto = $('#searchendtimeto').val();
+        let endtimefrom = $('#searchendtimefrom').val();
+        begintimeto = Date.parse('20 Aug 2000 ' + begintimeto);
+        begintimefrom = Date.parse('20 Aug 2000 ' + begintimefrom);
+        endtimeto = Date.parse('20 Aug 2000 ' + endtimeto);
+        endtimefrom = Date.parse('20 Aug 2000 ' + endtimefrom);
+        if (datevalidation() & timevalidation('searchbegintimeto') & timevalidation('searchbegintimefrom') & timevalidation('searchendtimeto') & timevalidation('searchendtimefrom') & checkbegintime(begintimeto, begintimefrom) & checkendtime(endtimeto, endtimefrom)) {
+            $.ajax({
+                url: '/report/search/event/getdata',
+                type: "post",
+                data: {
+                    date: $('#searchdate').val(),
+                    begintimeto: $('#searchbegintimeto').val(),
+                    begintimefrom: $('#searchbegintimefrom').val(),
+                    endtimeto: $('#searchendtimeto').val(),
+                    endtimefrom: $('#searchendtimefrom').val()
+                }
+            }).done(function (result) {
+                Table1.clear().draw();
+                Table1.rows.add(result).draw();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                // needs to implement if it fails
+            });
+        } else {
+            showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong ! Check the Input');
+        }
+    }
+
+    function deleteevent(id) {
+        $.ajax({
+            type: "POST",
+            url: baseURL + 'event/delete/' + id,
+            processData: false,
+            cache: false,
+            // enctype: 'multipart/form-data',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            error: function () {
+                showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+            },
+            success: function () {
+                showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Event Deleted Successfully !');
+                Table1.clear().draw();
+            }
+        }).done(function (data) {
+        });
+    }
+
+    function updateEventLoadModel(id) {
+        $.ajax({
+            type: "GET",
+            url: baseURL + 'allevents',
+            dataType: 'json',
+            error: function (data) {
+                // showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+            }
+        }).done(function (data) {
+            for (let i in data) {
+                let newdata = data[i];
+                let eventid = newdata['id'];
+
+                if (id == eventid) {
+                    let title = newdata['title'];
+                    let eventtype = newdata['eventtype'];
+                    let start1 = newdata['start'];
+                    let finish1 = newdata['finish'];
+                    let start = moment(start1).format("YYYY-MM-DD\THH:mm");
+                    let finish = moment(finish1).format("YYYY-MM-DD\THH:mm");
+                    let description = newdata['description'];
+                    $('#eventid').val(id);
+                    $('#EventBeginTimemodal').val(start);
+                    $('#EventEndTimemodal').val(finish);
+                    $('#descriptionmodal').val(description);
+                    $('#eventnamemodal').val(title);
+                    if (eventtype == "BulkDays") {
+                        $("#BulkDaysmodal").prop("checked", true);
+                    } else {
+                        $("#SingleDaymodal").prop("checked", true);
+                    }
+
+                }
+            }
+        });
+        $('#calendarModal').modal("show");
+    }
+
+    function updateevent() {
+        let id = $('#eventid').val();
+        let title = $('#eventnamemodal').val();
+        let description = $('#descriptionmodal').val();
+        let start = $('#EventBeginTimemodal').val();
+        let finish = $('#EventEndTimemodal').val();
+        let eventtype = $('input[name=exampleRadiosmodal]:checked').val();
+
+        var finish1 = new Date(finish);
+        var start1 = new Date(start);
+        if (finish1.getTime() > start1.getTime() && start1.getDate() <= finish1.getDate()) {
+            $.ajax({
+                type: "POST",
+                url: baseURL + 'event/update',
+                processData: false,
+                cache: false,
+                // enctype: 'multipart/form-data',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    id: id,
+                    title: title,
+                    description: description,
+                    start: start,
+                    finish: finish,
+                    eventtype: eventtype,
+                }),
+
+                error: function () {
+                    showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+                },
+                success: function () {
+                    showToast(TOAST_TYPE.SUCCESS, 'Success !', 'Event Added Successfully !');
+                    $('#EventEndTimemodal').css('border-color', '');
+                    $('#EventBeginTimemodal').css('border-color', '');
+                    location.reload();
+                }
+            }).done(function (data) {
+            });
+        } else {
+            showToast(TOAST_TYPE.DANGER, 'Error !', 'Something went wrong !');
+            $('#EventEndTimemodal').css('border-color', 'red');
+            $('#EventBeginTimemodal').css('border-color', 'red');
+        }
+    }
+
+    function datevalidation() {
+        let result = false;
+
+        $('#searchdate').css('border-color', 'red');
+        if (!($('#searchdate').val() == null || $('#searchdate').val() == "")) {
+            $('#searchdate').css('border-color', '');
+            $('#searchdateerror').addClass('d-none');
+            result = true;
+        } else {
+            $('#searchdateerror').removeClass('d-none');
+            $('#searchdate').css('border-color', 'red');
+
+            result = false;
+        }
+
+        return result;
+    }
+
+    function timevalidation(id) {
+        let result = false;
+
+        $('#' + id).css('border-color', 'red');
+        if (!($('#' + id).val() == null || $('#' + id).val() == "")) {
+            $('#' + id).css('border-color', '');
+            $('#' + id + 'error').addClass('d-none');
+            result = true;
+        } else {
+            $('#' + id + 'error').removeClass('d-none');
+            $('#' + id).css('border-color', 'red');
+
+            result = false;
+        }
+
+        return result;
+    }
+
+
+</script>
+
+</body>
+</html>

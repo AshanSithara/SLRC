@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="mb-3">
+                        <i class="fa fa-chart-bar"></i> Reports
+                    </h1>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+
+                                    <h3>
+<<<<<<< HEAD
+                                        <i class="fa fa-chart-bar"></i> Team Details
+                                    </h3>
+
+                                    <p>About the Team</p>
+=======
+                                        <i class="fa fa-chart-bar"></i> Chart 01
+                                    </h3>
+
+                                    <p>About the chart 01</p>
+>>>>>>> 4609734 (Initial commit)
+
+                                    <a class="text-decoration-none text-white" href="/report/employee-report-view">
+                                        Goto &nbsp;&nbsp;&nbsp; <i class="fa fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+
+                                    <h3>
+<<<<<<< HEAD
+                                        <i class="fa fa-chart-bar"></i> Event Details
+                                    </h3>
+
+                                    <p>About the Event</p>
+=======
+                                        <i class="fa fa-chart-bar"></i> Chart 02
+                                    </h3>
+
+                                    <p>About the chart 01</p>
+>>>>>>> 4609734 (Initial commit)
+
+                                    <a class="text-decoration-none text-white" href="/report/event-report-view">
+                                        Goto &nbsp;&nbsp;&nbsp; <i class="fa fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+
+                                    <h3>
+<<<<<<< HEAD
+                                        <i class="fa fa-chart-bar"></i> Month By Hour studio
+                                    </h3>
+
+                                    <p>monthly studio reservation </p>
+=======
+                                        <i class="fa fa-chart-bar"></i> Chart 02
+                                    </h3>
+
+                                    <p>About the chart 01</p>
+>>>>>>> 4609734 (Initial commit)
+
+                                    <a class="text-decoration-none text-white" href="/report/daybyhours-report-view">
+                                        Goto &nbsp;&nbsp;&nbsp; <i class="fa fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+
+                                    <h3>
+<<<<<<< HEAD
+                                        <i class="fa fa-chart-bar"></i> Day By Hour studio
+                                    </h3>
+
+                                    <p>Daily Studio Reservation</p>
+=======
+                                        <i class="fa fa-chart-bar"></i> Chart 02
+                                    </h3>
+
+                                    <p>About the chart 01</p>
+>>>>>>> 4609734 (Initial commit)
+
+                                    <a class="text-decoration-none text-white" href="/report/event-by-hour-report">
+                                        Goto &nbsp;&nbsp;&nbsp; <i class="fa fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+<<<<<<< HEAD
+<!--<script>
+=======
+<script>
+>>>>>>> 4609734 (Initial commit)
+
+    new Chart($('#chart_01'), {
+        type: 'bar',
+        data: {
+            labels: ['Test', 'Test', 'Test', 'Test', 'Test', 'Test'],
+            datasets: [{
+                label: [],
+                backgroundColor: '#197aec',
+                borderColor: '#197aec',
+                borderWidth: 1,
+                data: ['20', '80', '40', '30', '100', '20'],
+            }],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Report - Report Name'
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'month'
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Data Type'
+                    },
+                    ticks: {
+                        maxTicksLimit: 5
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Data Count'
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            }
+        }
+    })
+
+    new Chart($('#chart_02'), {
+        type: 'line',
+        data: {
+            labels: ['Test', 'Test', 'Test', 'Test', 'Test', 'Test'],
+            datasets: [{
+                label: [],
+                backgroundColor: 'rgba(25,122,236,0.24)',
+                borderColor: '#197aec',
+                borderWidth: 1,
+                data: ['20', '80', '40', '30', '100', '20'],
+            }],
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Report - Report Name'
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'month'
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Data Type'
+                    },
+                    ticks: {
+                        maxTicksLimit: 5
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        maxTicksLimit: 5
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Data Count'
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            }
+        }
+    })
+
+<<<<<<< HEAD
+</script>-->
+=======
+</script>
+>>>>>>> 4609734 (Initial commit)
+
+</body>
+</html>

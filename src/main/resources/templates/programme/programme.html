@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: headerFragment}">
+    <meta charset="UTF-8">
+    <title> Page Home </title>
+</head>
+<body>
+
+<main>
+    <!-- left side menu -->
+    <div th:replace="~{fragments/side_panel :: side_panel_fragment}"></div>
+
+    <!-- rite side content wrapping area -->
+    <div class="content_wrapper">
+
+        <div class="content_section">
+            <div class="container">
+                <div class="theme-bg-transparent p-5 border-rounded-4">
+
+                    <h1 class="text-dark mb-5">
+                        <i class="fa fa-building font-weight-bold"></i> Programme Management
+
+<<<<<<< HEAD
+                        <a class="btn btn-success" href="/programme/add" id="button1" th:if="${role == 'Admin' || role == 'Producer' }">
+=======
+                        <a class="btn btn-success" href="/programme/add" id="button1">
+>>>>>>> 4609734 (Initial commit)
+                            <i class="fa fa-user-plus"></i>&nbsp; New programme
+                        </a>
+
+                    </h1>
+
+                    <hr>
+
+                    <table class="table table-hover table-striped" id="myTable"
+                           th:if="${not #lists.isEmpty(programme)}">
+                        <thead>
+                        <tr>
+                            <th> Index</th>
+                            <th> Programme Name</th>
+                            <th> Producer Name</th>
+                            <th> Sponsor Name</th>
+                            <th> Broadcasting date</th>
+                            <th> Broadcasting time</th>
+                            <th> Code</th>
+                            <th> Modify</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="programme, rowCount : ${programme}">
+                            <th th:text="${rowCount.count}"></th>
+                            <th th:text="${programme.programmeName}"></th>
+                            <th th:text="${programme.producerName}"></th>
+                            <th th:text="${programme.sponsorName}"></th>
+                            <th th:text="${programme.broadcastingDate}"></th>
+                            <th th:text="${programme.broadcastingTime}"></th>
+                            <th th:text="${programme.code}"></th>
+                            <th>
+                                <a class="btn btn-success btn-sm" id="programmeView"
+                                   th:href="${'/programme/' + programme.id}"><i
+                                        class="fa fa-folder-open"></i>&nbsp;View</a>
+                                <a class="btn btn-primary btn-sm"
+                                   id="programmeEdit"
+                                   th:href="${'/programme/edit/' + programme.id}"
+<<<<<<< HEAD
+                                   th:if="${role == 'Admin' || role == 'Producer'}"><i
+=======
+                                   th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }"><i
+>>>>>>> 4609734 (Initial commit)
+                                        class="fa fa-edit"></i>&nbsp;Edit</a>
+                                <a class="btn btn-danger btn-sm"
+                                   id="programmeRemove"
+                                   th:href="${'/programme/remove/' + programme.id}"
+<<<<<<< HEAD
+                                   th:if="${role == 'Admin' || role == 'Producer' }"><i
+=======
+                                   th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }"><i
+>>>>>>> 4609734 (Initial commit)
+                                        class="fa fa-trash"></i>
+                                    Delete</a>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row" th:if="${ #lists.isEmpty(programme)}">
+                        <div class="col-sm-12">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="text-center text-danger">
+                                    <strong>There is no programme upto now please add programme to the system
+                                        using add user button.
+                                    </strong>
+                                </h3>
+                            </div>
+                        </div>
+                        <script>
+                            /*active boostrap alert - start*/
+                            $(".alert").alert();
+                            /*active boostrap alert - end*/
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- footer section -->
+        <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+    </div>
+    <!-- rite side content wrapping area -->
+</main>
+
+<!--script include-->
+<script th:replace="~{fragments/script :: scriptFragment}"></script>
+
+</body>
+</html>
+
+
+
+
+
