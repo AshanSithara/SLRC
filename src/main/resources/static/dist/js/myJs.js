@@ -30,6 +30,7 @@ $(document).ready(function () {
     /* Patient and employee Nic Validation - end*/
     //input type date can not be selected future date
 <<<<<<< HEAD
+<<<<<<< HEAD
     /*$('[type="date"]').prop('max', function () {
         return new Date().toJSON().split('T')[0];
     });*/
@@ -38,6 +39,11 @@ $(document).ready(function () {
         return new Date().toJSON().split('T')[0];
     });
 >>>>>>> 4609734 (Initial commit)
+=======
+    /*$('[type="date"]').prop('max', function () {
+        return new Date().toJSON().split('T')[0];
+    });*/
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
 });
 

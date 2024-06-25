@@ -15,8 +15,13 @@ public interface SponsorDao extends JpaRepository<Sponsor, Integer> {
             nativeQuery = true)
     String getusernamebyid(@Param("id") int id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     Sponsor findSponsorByUsername(String username);
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+
+    Sponsor findSponsorByUsername(String username);
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 }

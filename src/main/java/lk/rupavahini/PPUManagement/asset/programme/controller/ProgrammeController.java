@@ -115,7 +115,11 @@ public class ProgrammeController {
         return "programme/programme-detail";
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 }

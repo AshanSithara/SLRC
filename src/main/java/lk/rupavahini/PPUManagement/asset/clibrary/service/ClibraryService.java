@@ -2,16 +2,25 @@ package lk.rupavahini.PPUManagement.asset.clibrary.service;
 import lk.rupavahini.PPUManagement.asset.clibrary.dao.ClibraryDao;
 import lk.rupavahini.PPUManagement.asset.clibrary.entity.Clibrary;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import lk.rupavahini.PPUManagement.asset.commonAsset.model.ProgrammeModel;
 import lk.rupavahini.PPUManagement.asset.programme.entity.Programme;
 import lk.rupavahini.PPUManagement.asset.programme.service.ProgrammeService;
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+import lk.rupavahini.PPUManagement.asset.commonAsset.model.ProgrammeModel;
+import lk.rupavahini.PPUManagement.asset.programme.entity.Programme;
+import lk.rupavahini.PPUManagement.asset.programme.service.ProgrammeService;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import lk.rupavahini.PPUManagement.util.interfaces.AbstractService;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,23 +31,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+<<<<<<< HEAD
 =======
 import org.springframework.stereotype.Service;
 
 ;
 import java.util.List;
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
 @Service
 @CacheConfig( cacheNames = "clibrary" )
 public class ClibraryService implements AbstractService<Clibrary, Integer> {
     private final ClibraryDao clibraryDao;
 <<<<<<< HEAD
+<<<<<<< HEAD
     final Random random = new Random();
 
 
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+    final Random random = new Random();
+
+
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
     public ClibraryService(ClibraryDao clibraryDao) {
         this.clibraryDao = clibraryDao;
@@ -78,8 +96,13 @@ public class ClibraryService implements AbstractService<Clibrary, Integer> {
         return clibraryDao.findFirstByOrderByIdDesc();
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+
+
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 }

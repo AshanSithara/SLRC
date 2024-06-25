@@ -118,10 +118,14 @@ public class SponsorController {
         sponsor.setCreatedBy(username);
         redirectAttributes.addFlashAttribute("sponsorDetail",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 userMgtService.addSponsorUserMgt(sponsor,new UserMgt(sponsor.getUsername(),sponsor.getPassword(),"Sponsor","1",sponsor.getContactOne())));
 =======
                 userMgtService.addSponsorUserMgt(sponsor,new UserMgt(sponsor.getUsername(),sponsor.getPassword(),"Sponsor","1")));
 >>>>>>> 4609734 (Initial commit)
+=======
+                userMgtService.addSponsorUserMgt(sponsor,new UserMgt(sponsor.getUsername(),sponsor.getPassword(),"Sponsor","1",sponsor.getContactOne())));
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 //                sponsorService.persist(sponsor));
         return "redirect:/sponsor";
     }

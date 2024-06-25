@@ -4,9 +4,13 @@ function addAdminuser() {
     let password = $('#user-password').val();
     let cpassword = $('#user-retype-password').val();
 <<<<<<< HEAD
+<<<<<<< HEAD
     let mobilenumber = $('#mobilenumber').val();
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+    let mobilenumber = $('#mobilenumber').val();
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
     if (password==cpassword) {
         $.ajax({
@@ -21,9 +25,13 @@ function addAdminuser() {
                 username: username,
                 password: password,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 mobilenumber: mobilenumber,
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+                mobilenumber: mobilenumber,
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
                 type: "Admin"
             }),
             error: function (res) {

@@ -32,14 +32,20 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 	// https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
 	implementation group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.16.0'
 	// https://mvnrepository.com/artifact/com.lowagie/itext
 	implementation group: 'com.lowagie', name: 'itext', version: '2.1.7'
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 	//uvin end
 //================= Following jar is need to check url util - https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 =================//
 	compile group: 'org.apache.commons', name: 'commons-lang3'
@@ -111,6 +117,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	//ALUTHENGANNAKOTA COMMENT KARAGANNA
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 	/*developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -119,6 +128,7 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
+<<<<<<< HEAD
 =======
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
@@ -126,6 +136,8 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 }
 
 test {

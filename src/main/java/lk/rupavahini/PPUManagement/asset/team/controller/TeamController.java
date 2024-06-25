@@ -46,11 +46,16 @@ public class TeamController {
             username = principal.toString();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         model.addAttribute("user", username);
         model.addAttribute("role", userMgtService.usernamebyrole(username));
 =======
         model.addAttribute("role",userMgtService.usernamebyrole(username));
 >>>>>>> 4609734 (Initial commit)
+=======
+        model.addAttribute("user", username);
+        model.addAttribute("role", userMgtService.usernamebyrole(username));
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         model.addAttribute("team", teamService.findAll());
         return "team/team";
     }

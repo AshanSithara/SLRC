@@ -44,6 +44,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
 				//Employee restriction
 				.antMatchers("/employee/**").not().hasAnyAuthority( "Editor","Casset library admin","Technical Officer","Camera man","Sponsor")
@@ -91,11 +94,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/approve/**").not().hasAnyAuthority( "Engineer","Editor","Casset library admin","Technical Officer","Camera man","Sponsor","Producer")
 
 
+<<<<<<< HEAD
 =======
 				// URLs matching for access rights
 
 				.antMatchers("/report/**").permitAll()
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 				.antMatchers("/user/**").permitAll()
 //				.antMatchers("/employee/**").permitAll()
 				.antMatchers("/login").permitAll()
@@ -122,12 +128,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.tokenValiditySeconds(10030*5).rememberMeCookieName("mouni")
 				.key("somesecret")
 <<<<<<< HEAD
+<<<<<<< HEAD
 				.and().csrf().disable()
 				.exceptionHandling().accessDeniedPage("/error");
 =======
 				.and()
 				.csrf().disable();
 >>>>>>> 4609734 (Initial commit)
+=======
+				.and().csrf().disable()
+				.exceptionHandling().accessDeniedPage("/error");
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 //				.deleteCookies("auth_code", "JSESSIONID").invalidateHttpSession(true);
 
 //				.exceptionHandling()

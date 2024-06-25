@@ -4,6 +4,9 @@ package lk.rupavahini.PPUManagement.asset.clibrary.controller;
 import lk.rupavahini.PPUManagement.asset.clibrary.entity.Clibrary;
 import lk.rupavahini.PPUManagement.asset.clibrary.service.ClibraryService;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import lk.rupavahini.PPUManagement.asset.commonAsset.model.ClibraryModel;
 import lk.rupavahini.PPUManagement.asset.commonAsset.model.ProgrammeModel;
 import lk.rupavahini.PPUManagement.asset.event.entity.Event;
@@ -20,6 +23,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
 =======
 import lk.rupavahini.PPUManagement.auth.service.UserMgtService;
 import lk.rupavahini.PPUManagement.util.interfaces.AbstractService;
@@ -29,6 +33,8 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -36,6 +42,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -52,6 +61,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+<<<<<<< HEAD
 =======
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -59,26 +69,37 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
 @Service
 @RequestMapping("/clibrary")
 public class ClibraryController {
     private final ClibraryService clibraryService;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     private final ProgrammeService programmeService;
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 
     private final Path fileStorageLocation;
 
+<<<<<<< HEAD
 =======
     private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @Autowired
     private UserMgtService userMgtService;
 
     @Autowired
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public ClibraryController(ClibraryService clibraryService, ProgrammeService programmeService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
         this.fileStorageLocation = Paths.get("D:\\jarfile\\Employee_report.pdf")
                 .toAbsolutePath().normalize();
@@ -149,6 +170,7 @@ public class ClibraryController {
 
     }
 */
+<<<<<<< HEAD
 =======
     public ClibraryController(ClibraryService clibraryService, MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
         this.clibraryService = clibraryService;
@@ -156,6 +178,8 @@ public class ClibraryController {
     }
 
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     private String commonThings(Model model, Clibrary clibrary, Boolean addState) {
         model.addAttribute("clibrary", clibrary);
         model.addAttribute("addStatus", addState);
@@ -227,11 +251,17 @@ public class ClibraryController {
             username = principal.toString();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         model.addAttribute("role", userMgtService.usernamebyrole(username));
         model.addAttribute("username", username);
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+
+        model.addAttribute("role", userMgtService.usernamebyrole(username));
+        model.addAttribute("username", username);
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         clibrary.setCreatedAt(LocalDateTime.now());
         clibrary.setUpdatedAt(LocalDateTime.now());
         clibrary.setUpdatedBy(username);
@@ -244,10 +274,15 @@ public class ClibraryController {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+
+
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         return commonThings(model, clibraryService.findById(id), false);
@@ -265,6 +300,9 @@ public class ClibraryController {
         return "clibrary/clibrary-detail";
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
   /*  @RequestMapping(value = "/clibrary/value", method = RequestMethod.GET)
     public ResponseEntity getProgramme() {
@@ -285,6 +323,9 @@ public class ClibraryController {
 
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 }

@@ -25,9 +25,13 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.HashSet;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.List;
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+import java.util.List;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
 @Service
 public class UserMgtServiceImpl implements UserMgtService {
@@ -125,12 +129,18 @@ public class UserMgtServiceImpl implements UserMgtService {
 
     @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public UserMgt findbyusernameforUserMgt(String username){
         return userMgtRepo.findUserMgtsByUsername(username);
     }
     @Override
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public String usernamebyrole(String username) {
         UserMgt userMgtsByUsername = userMgtRepo.findUserMgtsByUsername(username);
         if (userMgtsByUsername==null){
@@ -142,13 +152,19 @@ public class UserMgtServiceImpl implements UserMgtService {
 
     @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public List<UserMgt> getAlluser() {
         return userMgtRepo.findAll();
     }
 
     @Override
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public boolean isUserAlreadyPresent(UserMgt userMgt) {
         boolean isUserAlreadyExists = false;
         UserMgt byUsername = userMgtRepo.findUserMgtsByUsername(userMgt.getUsername());

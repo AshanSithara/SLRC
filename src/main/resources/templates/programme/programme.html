@@ -21,10 +21,14 @@
                         <i class="fa fa-building font-weight-bold"></i> Programme Management
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <a class="btn btn-success" href="/programme/add" id="button1" th:if="${role == 'Admin' || role == 'Producer' }">
 =======
                         <a class="btn btn-success" href="/programme/add" id="button1">
 >>>>>>> 4609734 (Initial commit)
+=======
+                        <a class="btn btn-success" href="/programme/add" id="button1" th:if="${role == 'Admin' || role == 'Producer' }">
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
                             <i class="fa fa-user-plus"></i>&nbsp; New programme
                         </a>
 
@@ -63,19 +67,27 @@
                                    id="programmeEdit"
                                    th:href="${'/programme/edit/' + programme.id}"
 <<<<<<< HEAD
+<<<<<<< HEAD
                                    th:if="${role == 'Admin' || role == 'Producer'}"><i
 =======
                                    th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }"><i
 >>>>>>> 4609734 (Initial commit)
+=======
+                                   th:if="${role == 'Admin' || role == 'Producer'}"><i
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
                                         class="fa fa-edit"></i>&nbsp;Edit</a>
                                 <a class="btn btn-danger btn-sm"
                                    id="programmeRemove"
                                    th:href="${'/programme/remove/' + programme.id}"
 <<<<<<< HEAD
+<<<<<<< HEAD
                                    th:if="${role == 'Admin' || role == 'Producer' }"><i
 =======
                                    th:if="${role == 'Admin' || role == 'Producer' || role == 'Booking Officer' }"><i
 >>>>>>> 4609734 (Initial commit)
+=======
+                                   th:if="${role == 'Admin' || role == 'Producer' }"><i
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
                                         class="fa fa-trash"></i>
                                     Delete</a>
                             </th>

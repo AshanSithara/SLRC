@@ -56,6 +56,9 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             url = "/mainWindow";
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         else if (roles.contains("Booking Officer")) {
             url = "/mainWindow";
         }
@@ -69,8 +72,11 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             url = "/mainWindow";
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
         return url;
     }

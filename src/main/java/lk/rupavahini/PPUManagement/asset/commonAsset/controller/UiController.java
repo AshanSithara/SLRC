@@ -1,6 +1,9 @@
 package lk.rupavahini.PPUManagement.asset.commonAsset.controller;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import lk.rupavahini.PPUManagement.asset.commonAsset.model.ProfileModel;
 import lk.rupavahini.PPUManagement.asset.employee.entity.Employee;
 import lk.rupavahini.PPUManagement.asset.employee.service.EmployeeFilesService;
@@ -14,9 +17,12 @@ import lk.rupavahini.PPUManagement.asset.sponsor.service.SponsorService;
 import lk.rupavahini.PPUManagement.asset.userManagement.service.UserService;
 import lk.rupavahini.PPUManagement.auth.entity.UserMgt;
 import lk.rupavahini.PPUManagement.auth.service.UserMgtService;
+<<<<<<< HEAD
 =======
 import lk.rupavahini.PPUManagement.asset.userManagement.service.UserService;
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import lk.rupavahini.PPUManagement.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,9 +31,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMapping;
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+import org.springframework.web.bind.annotation.RequestMapping;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
@@ -35,12 +45,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 =======
 import java.util.HashSet;
 >>>>>>> 4609734 (Initial commit)
+=======
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
 @Controller
 public class UiController {
@@ -48,6 +64,9 @@ public class UiController {
     private final UserService userService;
     private final DateTimeAgeService dateTimeAgeService;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @Autowired
     private EmployeeFilesService employeeFilesService;
     @Autowired
@@ -63,8 +82,11 @@ public class UiController {
     @Autowired
     private PPUEventService ppuEventService;
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
     @Autowired
     public UiController(UserService userService, DateTimeAgeService dateTimeAgeService) {
@@ -73,6 +95,9 @@ public class UiController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @GetMapping(value = "/error")
     public String errorpage() {
         return "error";
@@ -190,6 +215,7 @@ public class UiController {
         return "profile/user-profile";
     }
 
+<<<<<<< HEAD
 =======
     @GetMapping(value = {"/", "/index"})
     public String index(Model model) {
@@ -205,6 +231,8 @@ public class UiController {
     }
 
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @GetMapping(value = {"/home", "/mainWindow"})
     public String getHome(Model model) {
         //do some logic here if you want something to be done whenever
@@ -222,6 +250,9 @@ public class UiController {
         model.addAttribute("petitions", petitionSet.toArray());*/
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         String username = null;
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
@@ -229,6 +260,7 @@ public class UiController {
             username = principal.toString();
         }
         model.addAttribute("user", username);
+<<<<<<< HEAD
 =======
         String username=null;
         if (principal instanceof UserDetails) {
@@ -238,6 +270,8 @@ public class UiController {
         }
         model.addAttribute("user",username);
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         return "mainWindow";
     }
 
@@ -257,10 +291,14 @@ public class UiController {
     private void handleLogOutResponse(HttpServletResponse response, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (cookies != null) {
 =======
         if (cookies!=null){
 >>>>>>> 4609734 (Initial commit)
+=======
+        if (cookies != null) {
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
             for (Cookie cookie : cookies) {
                 cookie.setMaxAge(100);
                 cookie.setValue(null);

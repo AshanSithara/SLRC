@@ -24,9 +24,13 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer> {
     String getusernamebyid(@Param("id") int id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     //Employee Search Report Query
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+    //Employee Search Report Query
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @Query(value = "SELECT new lk.rupavahini.PPUManagement.asset.commonAsset.model.EmployeeModel(e.id,e.name,e.nic,e.email,e.title,e.designation) from Employee e,Team t,Member m,MemberTeam mt where e=m.employee and m=mt.member and mt.team=t and t.id=:searchcombo ",
             nativeQuery = false)
     List<EmployeeModel> getemployeesearchdata(

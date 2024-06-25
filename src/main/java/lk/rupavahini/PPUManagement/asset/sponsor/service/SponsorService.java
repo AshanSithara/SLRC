@@ -42,12 +42,18 @@ public class SponsorService implements AbstractService<Sponsor, Integer> {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public Sponsor findSponsorByUsername(String username){
         return sponsorDao.findSponsorByUsername(username);
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public boolean delete(Integer id) {
         String getusernamebyid = getusernamebyid(id);
         userMgtService.deleteuser(getusernamebyid);

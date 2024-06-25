@@ -20,7 +20,11 @@ public class EventDataCollectModel {
     private int programmeid;
     private int studioid;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private String createdby;
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+    private String createdby;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 }

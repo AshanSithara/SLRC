@@ -11,9 +11,13 @@ import lk.rupavahini.PPUManagement.asset.commonAsset.model.SearchEventAdvanceMod
 import lk.rupavahini.PPUManagement.asset.employee.service.EmployeeService;
 import lk.rupavahini.PPUManagement.asset.event.service.EventService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import lk.rupavahini.PPUManagement.asset.ppuevent.service.PPUEventService;
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+import lk.rupavahini.PPUManagement.asset.ppuevent.service.PPUEventService;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,20 +43,30 @@ public class ReportController {
     private EmployeeService employeeService;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Autowired
     private PPUEventService ppuEventService;
 
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+    @Autowired
+    private PPUEventService ppuEventService;
+
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @GetMapping(value = "/reports")
     public ModelAndView viewReports() {
         return new ModelAndView("report/reports");
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     //Advance Search
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+    //Advance Search
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @GetMapping(value = "/event-report-view")
     public ModelAndView viewEventReport() {
         return new ModelAndView("report/event-report");
@@ -73,6 +87,9 @@ public class ReportController {
         return new ModelAndView("report/event-by-hour-report");
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
     @GetMapping(value = "/ppu-by-hour-report")
     public ModelAndView viewppubyhoursReport() {
@@ -87,8 +104,11 @@ public class ReportController {
 
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @GetMapping(value = "/hour-report/{date}")
     public ResponseEntity returnhourreport(@PathVariable(value = "date") String date) {
         Date date1= null;
@@ -103,6 +123,9 @@ public class ReportController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     // PPU Hour Report
     @GetMapping(value = "/ppu-hour-report/{date}")
     public ResponseEntity returnppuhour(@PathVariable(value = "date") String date) {
@@ -120,8 +143,11 @@ public class ReportController {
 
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @GetMapping(value = "/daybyhour-report/{month}")
     public ResponseEntity returndaybyhourreport(@PathVariable(value = "month") String month) {
         month=month+"-01";
@@ -129,6 +155,9 @@ public class ReportController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     //PPU day report
     @GetMapping(value = "/ppu-day-report/{month}")
     public ResponseEntity returnppudayreport(@PathVariable(value = "month") String month) {
@@ -136,8 +165,11 @@ public class ReportController {
         return new ResponseEntity(ppuEventService.getppudayreport(month),HttpStatus.OK);
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     @PostMapping(value = "/search/event/getdata")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity viewEventReport(@RequestParam String date, @RequestParam String begintimeto, @RequestParam String begintimefrom, @RequestParam String endtimeto, @RequestParam String endtimefrom) {

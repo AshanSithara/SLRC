@@ -86,6 +86,9 @@ public class EmployeeController {
     public String employeePage(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         String username = null;
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
@@ -94,6 +97,7 @@ public class EmployeeController {
         }
         model.addAttribute("role", userMgtService.usernamebyrole(username));
         model.addAttribute("username", username);
+<<<<<<< HEAD
 =======
         String username=null;
         if (principal instanceof UserDetails) {
@@ -104,6 +108,8 @@ public class EmployeeController {
         model.addAttribute("role",userMgtService.usernamebyrole(username));
         model.addAttribute("username",username);
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         model.addAttribute("employees", employeeService.findAll());
         return "employee/employee";
     }
@@ -145,11 +151,15 @@ public class EmployeeController {
     ) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         String username = null;
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         } else {
             username = principal.toString();
+<<<<<<< HEAD
 =======
         String username=null;
         if (principal instanceof UserDetails) {
@@ -157,6 +167,8 @@ public class EmployeeController {
         } else {
              username = principal.toString();
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         }
 
         if (result.hasErrors()) {
@@ -174,11 +186,15 @@ public class EmployeeController {
 //            Employee employee1 = employeeService.search(employee.getId());
 //            Employee persist = employeeService.persist(employee);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
             Employee employee2 = null;
             if (employee.getEmployeeStatus().getEmployeeStatus().equalsIgnoreCase("Working")) {
                 employee2 = userMgtService.addUserMgt(employee, new UserMgt(employee.getUsername(), employee.getPassword(), employee.getDesignation().getDesignation(), "1", employee.getMobileOne()));
             } else {
                 employee2 = userMgtService.addUserMgt(employee, new UserMgt(employee.getUsername(), employee.getPassword(), employee.getDesignation().getDesignation(), "0", employee.getMobileOne()));
+<<<<<<< HEAD
 =======
             Employee employee2=null;
             if (employee.getEmployeeStatus().getEmployeeStatus().equalsIgnoreCase("Working")){
@@ -186,6 +202,8 @@ public class EmployeeController {
             }else{
                 employee2=userMgtService.addUserMgt(employee,new UserMgt(employee.getUsername(),employee.getPassword(),employee.getDesignation().getDesignation(),"0"));
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
             }
             //if employee state is not working he or she cannot access to the system
 //            if (!employee.getEmployeeStatus().equals(EmployeeStatus.WORKING)) {
@@ -199,6 +217,9 @@ public class EmployeeController {
             //save employee img file
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
             if (employee.getFile().getOriginalFilename() != null) {
                 EmployeeFiles employeeFiles = employeeFilesService.findByName(employee.getFile().getOriginalFilename());
                 if (employeeFiles != null) {
@@ -219,6 +240,7 @@ public class EmployeeController {
                 employeeFiles.setCreatedBy(username);
                 employeeFilesService.persist(employeeFiles);
             }
+<<<<<<< HEAD
 =======
                 if (employee.getFile().getOriginalFilename() != null) {
                     EmployeeFiles employeeFiles = employeeFilesService.findByName(employee.getFile().getOriginalFilename());
@@ -241,6 +263,8 @@ public class EmployeeController {
                     employeeFilesService.persist(employeeFiles);
                 }
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
             return "redirect:/employee";
 
@@ -269,10 +293,14 @@ public class EmployeeController {
         String getusernamebyid = employeeService.getusernamebyid(id);
         boolean deleteuser = userMgtService.deleteuser(getusernamebyid);
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (deleteuser) {
 =======
         if (deleteuser){
 >>>>>>> 4609734 (Initial commit)
+=======
+        if (deleteuser) {
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
             employeeService.delete(id);
         }
         return "redirect:/employee";
@@ -289,6 +317,7 @@ public class EmployeeController {
     public ResponseEntity employeeall() {
         List<Employee> all = employeeService.findAll();
 <<<<<<< HEAD
+<<<<<<< HEAD
         List<EmployeeModel> employeeModels = new ArrayList<>();
         for (Employee employee : all) {
             employeeModels.add(new EmployeeModel(employee.getId(), employee.getName()));
@@ -297,28 +326,42 @@ public class EmployeeController {
         for (Employee employee:all){
             employeeModels.add(new EmployeeModel(employee.getId(),employee.getName()));
 >>>>>>> 4609734 (Initial commit)
+=======
+        List<EmployeeModel> employeeModels = new ArrayList<>();
+        for (Employee employee : all) {
+            employeeModels.add(new EmployeeModel(employee.getId(), employee.getName()));
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
         }
         return new ResponseEntity(employeeModels, HttpStatus.OK);
     }
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
 
 
 
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 //----> Employee details management - end <----//
     //````````````````````````````````````````````````````````````````````````````//
 //----> EmployeeWorkingPlace - details management - start <----//
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     //Send a searched employee to add working place
 /*
     @PostMapping( value = "/workingPlace" )

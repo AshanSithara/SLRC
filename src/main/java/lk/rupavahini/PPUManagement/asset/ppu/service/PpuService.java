@@ -2,10 +2,15 @@ package lk.rupavahini.PPUManagement.asset.ppu.service;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import lk.rupavahini.PPUManagement.asset.commonAsset.model.PpuModel;
 import lk.rupavahini.PPUManagement.asset.commonAsset.model.StudioModel;
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+import lk.rupavahini.PPUManagement.asset.commonAsset.model.PpuModel;
+import lk.rupavahini.PPUManagement.asset.commonAsset.model.StudioModel;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import lk.rupavahini.PPUManagement.asset.ppu.dao.PpuDao;
 import lk.rupavahini.PPUManagement.asset.ppu.entity.Ppu;
 import lk.rupavahini.PPUManagement.asset.studio.dao.StudioDao;
@@ -17,9 +22,13 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.ArrayList;
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+import java.util.ArrayList;
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 import java.util.List;
 
 @Service
@@ -53,6 +62,9 @@ public class PpuService implements AbstractService<Ppu, Integer> {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
     public List<PpuModel> getallPpu(){
         List<Ppu> all = ppuDao.findAll();
         List<PpuModel> ppuModels=new ArrayList<>();
@@ -62,8 +74,11 @@ public class PpuService implements AbstractService<Ppu, Integer> {
         return ppuModels;
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 4609734 (Initial commit)
+=======
+>>>>>>> 7335958cefe530feb0545b663d077ba7fef2d0b1
 
     public List<Ppu> search(Ppu ppu) {
         ExampleMatcher matcher = ExampleMatcher
